@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem_in.c                                           :+:      :+:    :+:   */
+/*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/22 18:32:57 by rfibigr          ###   ########.fr       */
+/*   Created: 2018/10/22 18:30:26 by rfibigr           #+#    #+#             */
+/*   Updated: 2018/10/22 18:32:15 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		main()
+void	init_anthill(t_anthill *anthill)
 {
-	t_anthill	anthill;
-	t_room		*list_room;
-	char		*str;
-
-	list_room = NULL;
-	str	= NULL;
-	init_anthill(&anthill);
-	while (get_next_line(0, &str))
-	{
-		if(create_list(&anthill, &list_room, str) == 0)
-			break;
-	}
-
-
-	return (0);
+	anthill->nb_ant = 0;
+	anthill->nb_start_pipe = 0;
+	anthill->nb_end_pipe = 0;
+	anthill->start = NULL;
+	anthill->end = NULL;
 }

@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/16 11:03:04 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/22 18:17:32 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -39,7 +39,8 @@ CFLAGS =		-Wall -Werror -Wextra
 NAME = 		lem_in
 
 #/********************** SOURCE *********************/
-SRC =		test.c \
+SRC =		lem_in.c \
+			create_list.c \
 
 
 LIBNAME =	libft/libft.a \
