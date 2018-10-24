@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/23 16:24:49 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/24 11:28:01 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -43,6 +43,7 @@ SRC =		lem_in.c \
 			create_list.c \
 			initialisation.c \
 			create_room.c \
+			create_room2.c \
 
 
 LIBNAME =	libft/libft.a \

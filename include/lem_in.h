@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/24 10:30:54 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/24 11:26:50 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ int					is_pipe(char *str);
 ** -------------- CREATE ROOM 2 ----------------
 ** --------------------------------------------
 */
-t_room	*ft_create_elem_room(char **split);
-void	add_room_lst(t_room **room, char **split, t_anthill *anthill);
+void				add_room_lst(t_room **room, char **split, t_anthill *anthill);
+t_room				*ft_create_elem_room(char **split);
+int					add_pipe_lst(t_room **room, char **split);
+t_room				*ft_search_name(t_room **room, char *name);
+void				ft_create_elem_pipe(t_room *elem_one, t_room *elem_two);
 
 /*
 ** --------------------------------------------

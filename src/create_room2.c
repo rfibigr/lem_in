@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 10:18:37 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/24 10:43:01 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/24 11:27:32 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	add_room_lst(t_room **room, char **split, t_anthill *anthill)
 {
-	t_room *elem;
+	t_room	*elem;
 
 	elem = ft_create_elem_room(split);
 	if (anthill->command == START)
@@ -27,7 +27,7 @@ void	add_room_lst(t_room **room, char **split, t_anthill *anthill)
 
 t_room	*ft_create_elem_room(char **split)
 {
-	t_room *elem;
+	t_room	*elem;
 
 	elem = (t_room*)malloc(sizeof(t_room));
 	elem->name = split[0];
@@ -39,11 +39,40 @@ t_room	*ft_create_elem_room(char **split)
 	free(split[1]);
 	free(split[2]);
 	return(elem);
+	//CREER UN TABLE DE HASH POUR RETROUVER LES NOMS
 }
 
-void	add_pipe_lst(t_room **room, char **split, t_anthill *anthill)
+int		add_pipe_lst(t_room **room, char **split)
 {
-	//search room with name
-	//create link 
+	t_room	*elem_one;
+	t_room	*elem_two;
+
+	elem_one = ft_search_name(room, split[0]);
+	elem_two = ft_search_name(room, split[1]);
+	if (elem_one == NULL || elem_two == NULL)
+		return (0);
+	ft_create_elem_pipe(elem_one, elem_two);
+	return(1);
+}
+
+t_room	*ft_search_name(t_room **room, char *name)
+{
+	t_room	*tmp;
+
+	tmp = *room;
+	while (tmp)
+	{
+		if (ft_strcmp(tmp->name, name))
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+void	ft_create_elem_pipe(t_room *elem_one, t_room *elem_two)
+{
+	(void)elem_one;
+	(void)elem_two;
+
 
 }

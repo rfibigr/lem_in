@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:51:33 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/24 10:38:32 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/24 11:26:47 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ int		ft_create_pipe(t_anthill *anthill, t_room **room, char *str)
 		ft_printf("error : pipe format");
 		return (0);
 	}
-	add_pipe_lst(room, split, anthill);
-
+	// Attention addinput
+	if (add_pipe_lst(room, split) == 0)
+		return (0);
 	return (1);
 }
 
