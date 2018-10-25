@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/24 11:28:01 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/25 18:44:03 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -44,6 +44,7 @@ SRC =		lem_in.c \
 			initialisation.c \
 			create_room.c \
 			create_room2.c \
+			test_valid_anthill.c \
 
 
 LIBNAME =	libft/libft.a \
@@ -82,3 +83,9 @@ fclean : clean
 	@make fclean -C $(LIB_PATH)/libft
 
 re: fclean all
+
+debug : $(OBJ)
+	@echo "$(LOW_GREEN) --Compiling lib--\tlibft"
+	@make -C $(LIB_PATH)/libft
+	@echo "$(PURPLE) --Linking--\t\tlem_in"
+	$(CC) -o lem_in_debug $^ $(LIBP) -fsanitize=address -O1 -fno-omit-frame-pointer

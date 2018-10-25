@@ -1,0 +1,13 @@
+Gestion si aucune salle
+gestion si aucune fourmi
+gestion si absence de start ou end
+gestion pas de chemin possible
+accepte les commentaires
+accepte commande autre que start et end
+fomat de sortie respecte
+repete la composition de la fourmiliere 
+commande et commentaire repete
+chemi au bon format : 1 ligne par tour, N deplacement par tout, un deplacement au format L"numero de fourmis"-"nom salle"
+
+chemin valide (pas forcement efficace)
+fourmis ne se marche pas dessus

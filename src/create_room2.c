@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 10:18:37 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/24 11:27:32 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/25 20:47:18 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	add_room_lst(t_room **room, char **split, t_anthill *anthill)
 		anthill->start = elem;
 	else if (anthill->command == END)
 		anthill->end = elem;
+	anthill->command = 0;
 	elem->next = *room;
 	*room = elem;
 }
@@ -51,7 +52,8 @@ int		add_pipe_lst(t_room **room, char **split)
 	elem_two = ft_search_name(room, split[1]);
 	if (elem_one == NULL || elem_two == NULL)
 		return (0);
-	ft_create_elem_pipe(elem_one, elem_two);
+	ft_create_elem_pipe(&elem_one, elem_two);
+	ft_create_elem_pipe(&elem_two, elem_one);
 	return(1);
 }
 
@@ -62,17 +64,52 @@ t_room	*ft_search_name(t_room **room, char *name)
 	tmp = *room;
 	while (tmp)
 	{
-		if (ft_strcmp(tmp->name, name))
+		if (!(ft_strcmp(tmp->name, name)))
 			return (tmp);
 		tmp = tmp->next;
 	}
 	return (NULL);
 }
 
-void	ft_create_elem_pipe(t_room *elem_one, t_room *elem_two)
+void	ft_create_elem_pipe(t_room **elem_room, t_room *elem_connected)
 {
-	(void)elem_one;
-	(void)elem_two;
+	t_room **tab_connection;
+	t_room **tab_new;
+	int len;
 
-
+	tab_connection = NULL;
+	tab_new = NULL;
+	if ((*elem_room)->connection == NULL)
+	{
+		//FONCTION CREATE NEW CONNECTION
+		tab_connection = (t_room**)malloc(sizeof(t_room *) * 2);
+		tab_connection[0] = elem_connected;
+		tab_connection[1] = NULL;
+		(*elem_room)->connection = tab_connection;
+	}
+	else
+	{
+		//FONCTION ADD CONNECTION
+		len = 0;
+		tab_connection = (*elem_room)->connection;
+		//Calcul size of connection
+		while (tab_connection[len])
+			len++;
+		// malloc size of connection + 2
+		tab_new = (t_room**)malloc(sizeof(t_room *) * (len + 2));
+		len = 0;
+		//copy connection in new
+		while (tab_connection[len])
+		{
+			tab_new[len] = tab_connection[len];
+			len ++;
+		}
+		// add elem_two and NULL
+		tab_new[len] = elem_connected;
+		len = len + 1;
+		tab_new[len] = NULL;
+		//free connection;
+		ft_memdel((void **)&((*elem_room)->connection));
+		(*elem_room)->connection = tab_new;
+	}
 }
