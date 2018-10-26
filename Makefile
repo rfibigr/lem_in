@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/26 11:31:23 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/26 18:19:54 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -36,7 +36,7 @@ CC =			gcc
 CFLAGS =		-Wall -Werror -Wextra
 
 #/********************** BINARY *********************/
-NAME = 		lem_in
+NAME = 		lem-in
 
 #/********************** SOURCE *********************/
 SRC =		lem_in.c \

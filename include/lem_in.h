@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/26 17:06:27 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/26 17:20:39 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_room				*ft_search_name(t_room **room, char *name);
 
 int					ft_create_room(t_anthill *anthill, t_room **room, char *str);
 int					check_duplicate_room(t_room **room, char *name);
-int					room_valid_format(char **split);
 void				add_room_lst(t_room **room, char **split, t_anthill *anthill);
 t_room				*ft_create_elem_room(char **split);
 
@@ -90,7 +89,6 @@ t_room				*ft_create_elem_room(char **split);
 */
 int					ft_create_pipe(t_anthill *anthill, t_room **room, char *str);
 int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
-int					pipe_valid_format(char **split);
 void				add_pipe_lst(t_room **room, char **split);
 void				ft_create_elem_pipe(t_room **elem_one, t_room *elem_two);
 void				add_elem_connection(t_room **elem_room, t_room *elem_connected);
@@ -108,6 +106,8 @@ void				init_anthill(t_anthill *anthill);
 ** --------------------------------------------
 */
 int					test_anthill(t_anthill anthill, t_room *room);
+int					pipe_valid_format(char **split);
+int					room_valid_format(char **split);
 
 /*
 ** --------------------------------------------
