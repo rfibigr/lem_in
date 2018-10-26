@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/25 18:44:03 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/26 11:31:23 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -41,9 +41,11 @@ NAME = 		lem_in
 #/********************** SOURCE *********************/
 SRC =		lem_in.c \
 			create_list.c \
-			initialisation.c \
+			create_list_tools.c \
 			create_room.c \
-			create_room2.c \
+			create_pipe.c \
+			ft_exit.c \
+			initialisation.c \
 			test_valid_anthill.c \
 
 

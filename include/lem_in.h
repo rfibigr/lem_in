@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/25 20:46:07 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/26 17:06:27 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,15 @@ typedef struct		s_anthill
 int					create_list(t_anthill *anthill, t_room **list_room, char *str);
 int					ft_nbants(t_anthill *anthill, char *str);
 void				ft_comment(t_anthill *anthill, char *str);
+
+/*
+** --------------------------------------------
+** -------------- CREATE LIST TOOL-------------
+** --------------------------------------------
+*/
 void				add_input(t_list **lst_input, char *str);
-int					ft_ispipe(char *str);
+int					is_pipe(char *str);
+t_room				*ft_search_name(t_room **room, char *name);
 
 /*
 ** --------------------------------------------
@@ -72,44 +79,50 @@ int					ft_ispipe(char *str);
 
 int					ft_create_room(t_anthill *anthill, t_room **room, char *str);
 int					check_duplicate_room(t_room **room, char *name);
-int					ft_create_pipe(t_anthill *anthill, t_room **room, char *str);
-int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
 int					room_valid_format(char **split);
-int					pipe_valid_format(char **split);
-int					is_pipe(char *str);
+void				add_room_lst(t_room **room, char **split, t_anthill *anthill);
+t_room				*ft_create_elem_room(char **split);
 
 /*
 ** --------------------------------------------
-** -------------- CREATE ROOM 2 ----------------
+** -------------- CREATE PIPE -----------------
 ** --------------------------------------------
 */
-void				add_room_lst(t_room **room, char **split, t_anthill *anthill);
-t_room				*ft_create_elem_room(char **split);
-int					add_pipe_lst(t_room **room, char **split);
-t_room				*ft_search_name(t_room **room, char *name);
+int					ft_create_pipe(t_anthill *anthill, t_room **room, char *str);
+int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
+int					pipe_valid_format(char **split);
+void				add_pipe_lst(t_room **room, char **split);
 void				ft_create_elem_pipe(t_room **elem_one, t_room *elem_two);
+void				add_elem_connection(t_room **elem_room, t_room *elem_connected);
 
 /*
 ** --------------------------------------------
 ** -------------- INITIALISATION  -------------
 ** --------------------------------------------
 */
-
 void				init_anthill(t_anthill *anthill);
-
 
 /*
 ** --------------------------------------------
 ** -----------TEST VALID ANTHILL  -------------
 ** --------------------------------------------
 */
-int		test_anthill(t_anthill anthill, t_room *room);
+int					test_anthill(t_anthill anthill, t_room *room);
 
 /*
 ** --------------------------------------------
 ** ------------------- TOOLS  -----------------
 ** --------------------------------------------
 */
-void				print_room(t_room *room);
+void				print_room(t_room *room, t_anthill anthill);
+
+/*
+** --------------------------------------------
+** ------------------- EXIT -------------------
+** --------------------------------------------
+*/
+void				ft_exit_malloc(void);
+void				free_all(t_list *input, t_room *room);
+void				free_split(char **split);
 
 #endif

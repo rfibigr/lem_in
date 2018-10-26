@@ -6,12 +6,11 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:30:26 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/23 17:34:46 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/26 17:14:39 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 void	init_anthill(t_anthill *anthill)
 {
@@ -24,8 +23,3 @@ void	init_anthill(t_anthill *anthill)
 	anthill->start = NULL;
 	anthill->end = NULL;
 }
-
-// void	init_input(t_input *input)
-// {
-// 	input->str = NULL;
-// }
