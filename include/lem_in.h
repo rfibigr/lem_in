@@ -6,12 +6,13 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/26 17:20:39 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/27 21:08:55 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
+
 
 // --------------------------------------------
 // ------------------ DEFINE -----------------
@@ -28,7 +29,13 @@
 */
 
 # include "../lib/libft/include/libft.h"
+# include "../lib/minilibx/mlx.h"
 
+/*
+** --------------------------------------------
+** ------------------ TYPE_DEF-----------------
+** --------------------------------------------
+*/
 typedef	struct		s_room
 {
 	char			*name;
@@ -51,6 +58,16 @@ typedef struct		s_anthill
 	t_room			*end;
 }					t_anthill;
 
+typedef struct		s_mlx
+{
+	void			*init;
+	void			*image;
+	void			*name;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	char			*str;
+}					t_mlx;
 
 /*
 ** --------------------------------------------
@@ -70,6 +87,7 @@ void				ft_comment(t_anthill *anthill, char *str);
 void				add_input(t_list **lst_input, char *str);
 int					is_pipe(char *str);
 t_room				*ft_search_name(t_room **room, char *name);
+int					ft_isnumber(char *str);
 
 /*
 ** --------------------------------------------
@@ -111,10 +129,17 @@ int					room_valid_format(char **split);
 
 /*
 ** --------------------------------------------
+** --------------- FT_PATH  -------------------
+** --------------------------------------------
+*/
+int					ft_path(t_anthill *anthill, t_room *room);
+/*
+** --------------------------------------------
 ** ------------------- TOOLS  -----------------
 ** --------------------------------------------
 */
 void				print_room(t_room *room, t_anthill anthill);
+int					ft_tablen(t_room **tab);
 
 /*
 ** --------------------------------------------

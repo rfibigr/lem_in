@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/26 18:19:54 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/27 20:54:57 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -47,9 +47,13 @@ SRC =		lem_in.c \
 			ft_exit.c \
 			initialisation.c \
 			test_valid_anthill.c \
+			ft_path.c \
+			tool.c \
+
 
 
 LIBNAME =	libft/libft.a \
+			minilibx/libmlx.a
 
 #/********************** PATH  *********************/
 INCP =		$(foreach dir, $(INC_PATH), -I$(dir))
@@ -65,8 +69,10 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@echo "$(LOW_GREEN) --Compiling lib--\tlibft"
 	@make -C $(LIB_PATH)/libft
+	@echo "$(LOW_GREEN) --Compiling lib--\tminilibix"
+	@make -C $(LIB_PATH)/minilibx
 	@echo "$(PURPLE) --Linking--\t\tlem_in"
-	$(CC) -o $@ $^ $(LIBP)
+	$(CC) -o $@ $^ $(LIBP) -lXext -lX11
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
 	@echo "$(GREEN) --Compiling--\t\tlem_in"
@@ -78,6 +84,7 @@ clean :
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@echo "$(RED) --Cleaning--\t\tlibrary libft"
 	@make clean -C $(LIB_PATH)/libft
+	@make clean -C $(LIB_PATH)/minilibx
 
 fclean : clean
 	@echo "$(RED) --Cleaning--\t\texecutable"
