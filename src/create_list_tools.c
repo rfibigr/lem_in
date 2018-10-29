@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:10:24 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/27 18:53:33 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 10:01:50 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,4 @@ t_room	*ft_search_name(t_room **room, char *name)
 		tmp = tmp->next;
 	}
 	return (NULL);
-}
-
-int		ft_isnumber(char *str)
-{
-	int i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]) && str[i] != '-')
-			return (0);
-		i++;
-	}
-	return (1);
 }
