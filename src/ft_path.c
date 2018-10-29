@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 13:57:12 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 17:57:39 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,102 @@
 
 /*
 	on entre les valeurs dans anthill START
-
 	on parcourt le graphe en largeur
-
-
 */
 
 
-int		ft_path(t_anthill *anthill, t_room *room)
+int		ft_path(t_anthill *anthill)
 {
-	(void)room;
-	anthill->nb_start_pipe = ft_tablen(anthill->start->connection);
-	anthill->nb_end_pipe = ft_tablen(anthill->end->connection);
+	t_room	*start;
+	t_room	*end;
+	t_list	*list_of_path;
 
+	list_of_path = NULL;
+	start = anthill->start;
+	end = anthill->end;
+	anthill->nb_start_pipe = ft_tablen(start->connection);
+	anthill->nb_end_pipe = ft_tablen(end->connection);
 
-	return (0);
+//TEST TO DELETE
+//	ft_shortest_path(&start);
+//ENDTEST
+	while (end->connection)
+	{
+		ft_shortest_path(&start);
+		ft_add_path(&list_of_path, &end, &start);
+	}
+	if (list_of_path == NULL)
+		ft_printf("Error path\n");
+	//ft_send_ants(&list_of_path, anthill->nb_ant);
+	return (1);
 }
 
+void	ft_shortest_path(t_room **start)
+{
+	t_list	*list_to_explore;
+	t_room	*head;
+	t_room	*parent;
+	int		i;
+
+	list_to_explore = NULL;
+	add_list_to_explore(start, &list_to_explore);
+	(*start)->explored = 1;
+	while (list_to_explore)
+	{
+		ft_printf("while -------------- LSTEXPLORE ------------ \n");
+		print_explore(list_to_explore);
+		ft_printf("------- ENDLIST EXPLORE ------------- \n");
+		head = list_to_explore->content;
+		parent = head;
+		i = 0;
+		while (head->connection[i])
+		{
+			ft_printf("while -----------CONNECTION----------\n");
+
+			ft_printf("name = %s, head->connection[i]->explored = |%d|, head->connection[i]index = |%d|, parent->index = |%d|\n",
+			head->connection[i]->name, head->connection[i]->explored, head->connection[i]->index, parent->index);
+			ft_printf("-----------ENDCONNECTION----------\n");
+			//voir pour mieux gerer le cas de connection index = 0 et parent index = 0
+			if (head->connection[i]->explored == 0 && head->connection[i]->index <= parent->index)
+			{
+				ft_printf("IF add to explore\n");
+				head->connection[i]->parent = parent;
+				head->connection[i]->index = parent->index + 1;
+				head->connection[i]->explored = 1;
+				add_list_to_explore(&head->connection[i], &list_to_explore);
+			}
+			i++;
+		}
+		print_explore(list_to_explore);
+		del_list_to_explore(&list_to_explore);
+		ft_printf("DEL -------------- LSTEXPLORE ------------ \n");
+		print_explore(list_to_explore);
+		ft_printf("------- ENDLIST EXPLORE ------------- \n");
+	}
+}
+
+void	add_list_to_explore(t_room **elem, t_list **list_to_explore)
+{
+	if (*list_to_explore == NULL)
+	{
+		ft_printf("add to explore first elem\n");
+		*list_to_explore = ft_lstnew(*elem, sizeof(**elem));
+	}
+	else
+	{
+		ft_printf("Push back to explore elem\n");
+		ft_list_push_back(list_to_explore, *elem, sizeof(**elem));
+	}
+}
+
+void	del_list_to_explore(t_list **list)
+{
+	t_list *tmp;
+
+	tmp = *list;
+	*list = (*list)->next;
+	ft_memdel((void**)&tmp);
+}
 
 /*  ALGO PARCOUR LARGEUR
 
@@ -66,56 +145,5 @@ while (chemin possible)
 
 si chemin_possible = Error
 
-
-
-
-
-
-list = 0
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-
-list = 2 1
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-
-list = 1 5 6
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-
-list = 5 6 3 4 7
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-
-list =  6 3 4 7 8
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-8 compteur = 3 / explored = 1 / parent = 5;
-4 compteur = 3 / explored = 1 / parent = 5;
-
-list =  3 4 7 8  8
-2 compteur = 1 / explored = 1 / parent = 0;
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-8 compteur = 3 / explored = 1 / parent = 6;
-4 compteur = 3 / explored = 1 / parent = 5;
-
-list =  4 7 8 4 8 2 7
-2 compteur = 1 / explored = 1 / parent = 0; // on ajoute pas 2 car compteur = 3
-1 compteur = 1 / explored = 1 / parent = 0;
-5 compteur = 2 / explored = 1 / parent = 2;
-6 compteur = 2 / explored = 1 / parent = 2;
-8 compteur = 3 / explored = 1 / parent = 5; //creer un tableau de parent si explorated = 0
-8 compteur = 3 / explored = 1 / parent = 6;
-4 compteur = 3 / explored = 1 / parent = 5;
 
 */

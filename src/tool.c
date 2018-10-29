@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/27 21:07:56 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 16:47:30 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	print_room(t_room *room, t_anthill anthill)
 			ft_printf("NAME : %s\n", room->name);
 			ft_printf("X : %d\n", room->x_coord);
 			ft_printf("Y : %d\n", room->y_coord);
+			if (room->parent)
+				ft_printf("Parent : %s\n", room->parent->name);
+			ft_printf("Explored : %d\n", room->explored);
+			ft_printf("Index : %d\n", room->index);
 			ft_printf("---LINK---\n");
 			i = 0;
 			if (connection)
@@ -70,4 +74,23 @@ void	print_room(t_room *room, t_anthill anthill)
 		ft_printf("end nb_connection : %d\n", anthill.nb_end_pipe);
 		ft_printf("NB ant : %d\n", anthill.nb_ant);
 	ft_printf("============/INFO============\n");
+}
+
+
+void	print_explore(t_list *list)
+{
+	int i;
+	t_room *room;
+
+	i = 0;
+	while (list)
+	{
+		room = list->content;
+		ft_printf("list[%d]=", i);
+		ft_printf("name|%s|\n", room->name);
+		ft_printf("x|%d|\n", room->x_coord);
+		ft_printf("y|%d|\n", room->y_coord);
+		list = list->next;
+		i++;
+	}
 }

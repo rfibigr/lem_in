@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/27 21:08:55 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 16:23:39 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef	struct		s_room
 	int				y_coord;
 	struct s_room	**connection;
 	struct s_room	*next;
-	int				already_pass;
+	int				explored;
+	int				index;
+	struct s_room	*parent;
 }					t_room;
 
 typedef struct		s_anthill
@@ -132,7 +134,11 @@ int					room_valid_format(char **split);
 ** --------------- FT_PATH  -------------------
 ** --------------------------------------------
 */
-int					ft_path(t_anthill *anthill, t_room *room);
+int					ft_path(t_anthill *anthill);
+void				ft_shortest_path(t_room **start);
+void				add_list_to_explore(t_room **elem, t_list **list_to_explore);
+void				del_list_to_explore(t_list **list);
+
 /*
 ** --------------------------------------------
 ** ------------------- TOOLS  -----------------
@@ -140,6 +146,7 @@ int					ft_path(t_anthill *anthill, t_room *room);
 */
 void				print_room(t_room *room, t_anthill anthill);
 int					ft_tablen(t_room **tab);
+void				print_explore(t_list *list);
 
 /*
 ** --------------------------------------------
