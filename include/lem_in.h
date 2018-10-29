@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 16:23:39 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:56:40 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef	struct		s_room
 	struct s_room	**connection;
 	struct s_room	*next;
 	int				explored;
+	int				use;
 	int				index;
 	struct s_room	*parent;
 }					t_room;
@@ -70,6 +71,12 @@ typedef struct		s_mlx
 	int				endian;
 	char			*str;
 }					t_mlx;
+
+typedef struct		s_lst
+{
+	t_room			*elem;
+	struct s_lst	*next;
+}					t_lst;
 
 /*
 ** --------------------------------------------
@@ -134,11 +141,21 @@ int					room_valid_format(char **split);
 ** --------------- FT_PATH  -------------------
 ** --------------------------------------------
 */
-int					ft_path(t_anthill *anthill);
+int					ft_path(t_anthill *anthill, t_room **room);
+void				ft_add_path(t_list **path_list, t_room **end, t_room **start);
 void				ft_shortest_path(t_room **start);
-void				add_list_to_explore(t_room **elem, t_list **list_to_explore);
-void				del_list_to_explore(t_list **list);
+void				add_list_to_explore(t_room **elem, t_lst **list_to_explore);
+void				del_list_to_explore(t_lst **list);
+int					ft_connection_use(t_room **room);
+void				ft_reinit_room(t_room **room);
 
+/*
+** --------------------------------------------
+** --------------- FT_ADD_PATH  -------------------
+** --------------------------------------------
+*/
+void				add_to_path(t_list **path, t_room **elem);
+void				add_to_pathlist(t_list **path, t_list **elem);
 /*
 ** --------------------------------------------
 ** ------------------- TOOLS  -----------------
@@ -147,6 +164,7 @@ void				del_list_to_explore(t_list **list);
 void				print_room(t_room *room, t_anthill anthill);
 int					ft_tablen(t_room **tab);
 void				print_explore(t_list *list);
+void				ft_print_pathlist(t_list **list_of_path);
 
 /*
 ** --------------------------------------------

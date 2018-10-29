@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/29 14:42:02 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/29 18:21:29 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -48,6 +48,7 @@ SRC =		lem_in.c \
 			initialisation.c \
 			test_valid_anthill.c \
 			ft_path.c \
+			ft_add_path.c \
 			tool.c \
 
 

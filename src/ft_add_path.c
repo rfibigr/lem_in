@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/29 17:17:33 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 17:55:50 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:56:36 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,54 @@ void	ft_add_path(t_list **path_list, t_room **end, t_room **start)
 	t_room	*room;
 
 	path = NULL;
-	room = *end;
-	if (!(*end)->parent)
+	room = (*end)->parent;
+	if (!room)
 	{
-		add_to_path(path_list, NULL);
+		add_to_pathlist(path_list, NULL);
 		return;
 	}
-	add_to_path(path, room);
-	room = room->parent;
-	while (room != *start)
+	add_to_path(&path, end);
+	while (room->name != (*start)->name)
 	{
-		add_to_path(path, room);
-		//delete connection;
+		room->use = 1;
+		add_to_path(&path, &room);
 		room = room->parent;
 	}
-	add_to_path(path_list, path);
+	//OPTIONNELLE
+	add_to_path(&path, &room);
+	add_to_pathlist(path_list, &path);
 }
 
-void	add_to_path(t_list **path, t_list **elem)
-{
+//CREATE JUST ONE FUNCTION
 
+void	add_to_path(t_list **path, t_room **elem)
+{
+	t_list	*to_add;
+
+	to_add = (t_list *)malloc(sizeof(t_list));
+	to_add->content = *elem;
+	to_add->next = NULL;
+	if (*path == NULL)
+		*path = to_add;
+	else
+	{
+		to_add->next = *path;
+		*path = to_add;
+	}
+}
+
+void	add_to_pathlist(t_list **path_list, t_list **elem)
+{
+	t_list	*to_add;
+
+	to_add = (t_list *)malloc(sizeof(t_list));
+	to_add->content = *elem;
+	to_add->next = NULL;
+	if (*path_list == NULL)
+		*path_list = to_add;
+	else
+	{
+		to_add->next = *path_list;
+		*path_list = to_add;
+	}
 }

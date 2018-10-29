@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 16:47:30 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:56:36 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	print_room(t_room *room, t_anthill anthill)
 			ft_printf("Y : %d\n", room->y_coord);
 			if (room->parent)
 				ft_printf("Parent : %s\n", room->parent->name);
+			ft_printf("USE : %d\n", room->use);
 			ft_printf("Explored : %d\n", room->explored);
 			ft_printf("Index : %d\n", room->index);
 			ft_printf("---LINK---\n");
@@ -93,4 +94,32 @@ void	print_explore(t_list *list)
 		list = list->next;
 		i++;
 	}
+}
+
+void	ft_print_pathlist(t_list **list_of_path)
+{
+	int	i;
+	t_list	*tmp;
+	t_list	*path;
+	t_room	*room;
+
+	tmp = (*list_of_path);
+	room = NULL;
+	i = 0;
+	while (tmp)
+	{
+		ft_printf("----------PATH NUMBER %d-------------\n", i);
+
+		path = tmp->content;
+		while (path)
+		{
+			room = path->content;
+			ft_printf("Room name : %s\n", room->name);
+			path = path->next;
+		}
+		ft_printf("------- END PATH NUMBER %d ----------\n", i );
+		i++;
+		tmp = tmp->next;
+	}
+
 }

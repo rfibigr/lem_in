@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 16:33:50 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 21:56:38 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int		main()
 	}
 	ft_printf("=============== ROOM BEFORE ==================\n");
 	// print_room(list_room, anthill);
-	ft_path(&anthill);
+	ft_path(&anthill, &list_room);
 	ft_printf("=============== ROOM AFTER ==================\n");
-	print_room(list_room, anthill);
+	// print_room(list_room, anthill);
 	/*
 	MINILIBIX
 	t_mlx	mlx;

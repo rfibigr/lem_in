@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:51:33 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 15:20:55 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/29 19:21:19 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_room	*ft_create_elem_room(char **split)
 	elem->y_coord = ft_atoi(split[2]);
 	elem->explored = 0;
 	elem->index = 0;
+	elem->use = 0;
 	elem->parent = NULL;
 	elem->next = NULL;
 	elem->connection = NULL;
