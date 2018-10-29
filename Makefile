@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/27 20:54:57 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/10/29 14:42:02 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -51,9 +51,22 @@ SRC =		lem_in.c \
 			tool.c \
 
 
+UNAME := $(shell uname)
 
+ifeq ($(UNAME), Linux)
 LIBNAME =	libft/libft.a \
 			minilibx/libmlx.a
+LIB_FOLDER = minilibx
+FRAMEWORK = 	-lXext -lX11
+# do something Linux-y
+endif
+ifeq ($(UNAME), Darwin)
+LIBNAME =	libft/libft.a \
+			minilibx_macos/libmlx.a
+LIB_FOLDER = minilibx_macos
+FRAMEWORK = 	-framework OpenGL -framework AppKit
+# do something Solaris-y
+endif
 
 #/********************** PATH  *********************/
 INCP =		$(foreach dir, $(INC_PATH), -I$(dir))
@@ -70,9 +83,9 @@ $(NAME) : $(OBJ)
 	@echo "$(LOW_GREEN) --Compiling lib--\tlibft"
 	@make -C $(LIB_PATH)/libft
 	@echo "$(LOW_GREEN) --Compiling lib--\tminilibix"
-	@make -C $(LIB_PATH)/minilibx
+	@make -C $(LIB_PATH)/$(LIB_FOLDER)
 	@echo "$(PURPLE) --Linking--\t\tlem_in"
-	$(CC) -o $@ $^ $(LIBP) -lXext -lX11
+	$(CC) -o $@ $^ $(LIBP) $(FRAMEWORK)
 
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c
 	@echo "$(GREEN) --Compiling--\t\tlem_in"
@@ -84,7 +97,7 @@ clean :
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@echo "$(RED) --Cleaning--\t\tlibrary libft"
 	@make clean -C $(LIB_PATH)/libft
-	@make clean -C $(LIB_PATH)/minilibx
+	@make clean -C $(LIB_PATH)/$(LIB_FOLDER)
 
 fclean : clean
 	@echo "$(RED) --Cleaning--\t\texecutable"
