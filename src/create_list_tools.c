@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:10:24 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 10:01:50 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/30 15:55:03 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	add_input(t_list **lst_input, char *str)
 {
 	if (*lst_input == NULL)
-		*lst_input = ft_lstnew(str, ft_strlen(str) + 1);
+		*lst_input = ft_lstnewcpy(str, ft_strlen(str) + 1);
 	else
-		ft_list_push_back(lst_input, str, ft_strlen(str) + 1);
+		ft_list_push_back_cpy(lst_input, str, ft_strlen(str) + 1);
 }
 
 int		is_pipe(char *str)

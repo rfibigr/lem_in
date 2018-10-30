@@ -6,17 +6,18 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 21:56:40 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/30 15:40:13 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-
-// --------------------------------------------
-// ------------------ DEFINE -----------------
-// --------------------------------------------
+/*
+** --------------------------------------------
+** ------------------ DEFINE -----------------
+** --------------------------------------------
+*/
 # define TRUE 1
 # define START 2
 # define END 3
@@ -142,10 +143,16 @@ int					room_valid_format(char **split);
 ** --------------------------------------------
 */
 int					ft_path(t_anthill *anthill, t_room **room);
-void				ft_add_path(t_list **path_list, t_room **end, t_room **start);
+int					ft_add_path(t_list **path_list, t_room **end, t_room **start);
 void				ft_shortest_path(t_room **start);
 void				add_list_to_explore(t_room **elem, t_lst **list_to_explore);
 void				del_list_to_explore(t_lst **list);
+/*
+** --------------------------------------------
+** --------------- FT_PATH TOOLS---------------
+** --------------------------------------------
+*/
+int					ft_condition_to_explore(t_room *room, int index);
 int					ft_connection_use(t_room **room);
 void				ft_reinit_room(t_room **room);
 
