@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 17:56:14 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/31 18:42:45 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 			mettre le premier 0 a 1
 		faire partir des fourmies (mettre a 1 ant dans les paths)
 			on cree les fourmis path = 0
+
 */
 
 void	ft_send_ants(t_list **path_list, int nb_ant)
@@ -47,14 +48,13 @@ void	ft_send_ants(t_list **path_list, int nb_ant)
 	ant_list = NULL;
 	ant_number = 1;
 	create_ant_list(&ant_list, nb_ant);
-	ft_printf("before print\n");
-	print_ant(ant_list);
-	ft_printf("after print\n");
 	ft_add_size_to_path(path_list);
 
+	print_ant(ant_list);
 	while (ant_list)
 	{
 		ft_printf("hello\n");
+		move_ant(path_list);
 		//If path_len < nb_fourmis
 			//create_ant
 	// on assigne la room a la fourmis.
@@ -65,6 +65,12 @@ void	ft_send_ants(t_list **path_list, int nb_ant)
 		// 	break;
 		ant_list = ant_list->next;
 	}
+}
+
+void	move_ant(t_list **path_list)
+{
+	while ()
+
 }
 
 void	create_ant_list(t_list **ant_list, int nb_ant)

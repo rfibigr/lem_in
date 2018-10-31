@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 17:54:19 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/31 18:42:01 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef	struct		s_room
 	int				use;
 	int				index;
 	struct s_room	*parent;
+	t_list			*ant;
 }					t_room;
 
 typedef struct		s_anthill
