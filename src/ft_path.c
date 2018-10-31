@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/30 18:36:06 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/31 13:51:39 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ft_path(t_anthill *anthill, t_room **room)
 	else
 	{
 		ft_print_pathlist(&list_of_path);
-		// ft_send_ants(&list_of_path, anthill->nb_ant);
+		ft_send_ants(&list_of_path, anthill->nb_ant);
 	}
 	//free path;
 	return (1);

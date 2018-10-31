@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/29 21:56:36 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/31 18:26:57 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,64 @@ void	ft_print_pathlist(t_list **list_of_path)
 		i++;
 		tmp = tmp->next;
 	}
+
+}
+
+void	print_room_solo(t_room *room)
+{
+	t_room **connection;
+	int i;
+
+	ft_printf("=============ROOM============\n");
+			connection = room->connection;
+			ft_printf("-----------------------\n");
+			ft_printf("NAME : %s\n", room->name);
+			ft_printf("X : %d\n", room->x_coord);
+			ft_printf("Y : %d\n", room->y_coord);
+			if (room->parent)
+				ft_printf("Parent : %s\n", room->parent->name);
+			ft_printf("USE : %d\n", room->use);
+			ft_printf("Explored : %d\n", room->explored);
+			ft_printf("Index : %d\n", room->index);
+			ft_printf("---LINK---\n");
+			i = 0;
+			if (connection)
+			{
+				while (connection[i])
+				{
+					ft_printf("|%s|\n", connection[i]->name);
+					i++;
+				}
+			}
+			ft_printf("--/LINK---\n");
+			ft_printf("-----------------------\n\n");
+	ft_printf("============/ROOM============\n");
+}
+
+void	print_ant(t_list *ant_list)
+{
+	t_ant	*ant;
+	t_room	*room;
+	t_list	*path;
+
+	ant = NULL;
+	room = NULL;
+	ft_printf("=============ANT============\n");
+	while(ant_list)
+	{
+		ant = ant_list->content;
+		path = ant->path;
+		if (path)
+			room = path->content;
+			ft_printf("-----------------------\n");
+			ft_printf("NAME : %d\n", ant->name);
+			if (path)
+				ft_printf("PATH : %s\n", room->name);
+			else
+				ft_printf("PATH : %s\n", path);
+		ft_printf("-----------------------\n\n");
+		ant_list = ant_list->next;
+	}
+	ft_printf("============/ANT============\n");
 
 }

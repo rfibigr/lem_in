@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/30 15:40:13 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/10/31 17:54:19 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ typedef struct		s_lst
 	t_room			*elem;
 	struct s_lst	*next;
 }					t_lst;
+
+typedef struct		s_ant
+{
+	int				name;
+	t_list			*path;
+}					t_ant;
 
 /*
 ** --------------------------------------------
@@ -158,11 +164,21 @@ void				ft_reinit_room(t_room **room);
 
 /*
 ** --------------------------------------------
-** --------------- FT_ADD_PATH  -------------------
+** --------------- FT_ADD_PATH  ---------------
 ** --------------------------------------------
 */
 void				add_to_path(t_list **path, t_room **elem);
 void				add_to_pathlist(t_list **path, t_list **elem);
+
+/*
+** --------------------------------------------
+** --------------- FT_SEND ANT ----------------
+** --------------------------------------------
+*/
+void				ft_send_ants(t_list **path_list, int nb_ant);
+void				ft_add_size_to_path(t_list **list_of_path);
+void				create_ant_list(t_list **ant_list, int nb_ant);
+
 /*
 ** --------------------------------------------
 ** ------------------- TOOLS  -----------------
@@ -172,6 +188,8 @@ void				print_room(t_room *room, t_anthill anthill);
 int					ft_tablen(t_room **tab);
 void				print_explore(t_list *list);
 void				ft_print_pathlist(t_list **list_of_path);
+void				print_room_solo(t_room *room);
+void				print_ant(t_list *ant_list);
 
 /*
 ** --------------------------------------------
