@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:10:24 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 14:02:53 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 23:31:02 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ int		is_pipe(char *str)
 	int i;
 
 	i = 0;
-	if (!(ft_isdigit(str[0])))
+	if (!(ft_isalpha(str[0])))
 		return (0);
 	while (str[i] != '-')
 	{
-		if (!(ft_isdigit(str[i])))
+		if (!(ft_isalpha(str[i])))
 			return (0);
 		i++;
 	}
 	i++;
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i])))
+		if (!(ft_isalpha(str[i])))
 			return (0);
 		i++;
 	}
-	if (!(ft_isdigit(str[i - 1])))
+	if (!(ft_isalpha(str[i - 1])))
 		return (0);
 	return (1);
 }

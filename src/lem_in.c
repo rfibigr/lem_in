@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 19:38:43 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 23:25:52 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		main()
 		list = list->next;
 	}
 	ft_printf("\n");
-
+	//seg fault si aucune connection 
 	ft_path(&anthill, &list_room);
 
 //	MINILIBIX

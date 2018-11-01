@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 19:19:03 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 22:55:27 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,10 @@ t_ant 	*skip_used_ant(t_ant **ant_list)
 void	move_ant(t_ant **ant_list)
 {
 	t_ant	*ant;
-	t_room	*room;
 	t_list	*path;
 
 	ant = *ant_list;
 	path = NULL;
-
 	while (ant)
 	{
 		if (!(ant->path))
@@ -145,7 +143,6 @@ void	move_ant(t_ant **ant_list)
 		path = ant->path;
 		path = path->next;
 		ant->path = path;
-		room = ant->path->content;
 		ant = ant->next;
 	}
 }

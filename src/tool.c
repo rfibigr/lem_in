@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 17:14:52 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 22:56:00 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,12 +167,12 @@ void	print_ant(t_ant *ant)
 		path = ant->path;
 		if (path)
 			room = path->content;
-			ft_printf("-----------------------\n");
-			ft_printf("NAME : %d\n", ant->name);
-			if (path)
-				ft_printf("PATH : %s\n", room->name);
-			else
-				ft_printf("PATH : %s\n", path);
+		ft_printf("-----------------------\n");
+		ft_printf("NAME : %d\n", ant->name);
+		if (path)
+			ft_printf("PATH : %s\n", room->name);
+		else
+			ft_printf("PATH : %s\n", path);
 		ft_printf("-----------------------\n\n");
 		ant = ant->next;
 	}

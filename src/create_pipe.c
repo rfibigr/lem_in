@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:02:05 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 18:01:46 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 23:27:14 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_create_pipe(t_anthill *anthill, t_room **room, char *str)
 		ft_printf("error check duplicate pipe\n");
 		return (0);
 	}
+	ft_printf("split[0] = %s, split[1]",split[0], split[1]);
 	add_pipe_lst(room, split);
 	return (1);
 }
