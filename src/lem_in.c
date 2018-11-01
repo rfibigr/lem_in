@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 18:37:57 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 19:38:43 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		main()
 {
 	t_anthill	anthill;
 	t_room		*list_room;
+	t_list		*list;
 	char		*str;
 
 	list_room = NULL;
@@ -35,11 +36,16 @@ int		main()
 		ft_printf("Error\n");
 		return (0);
 	}
-	ft_printf("=============== ROOM BEFORE ==================\n");
-	// print_room(list_room, anthill);
+	list = anthill.input;
+	while (list)
+	{
+		ft_printf("%s", list->content);
+		ft_printf("\n");
+		list = list->next;
+	}
+	ft_printf("\n");
+
 	ft_path(&anthill, &list_room);
-	ft_printf("=============== ROOM AFTER ==================\n");
-	// print_room(list_room, anthill);
 
 //	MINILIBIX
 	// t_mlx	mlx;
