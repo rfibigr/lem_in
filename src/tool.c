@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 18:26:57 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 17:14:52 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,18 +155,15 @@ void	print_room_solo(t_room *room)
 	ft_printf("============/ROOM============\n");
 }
 
-void	print_ant(t_list *ant_list)
+void	print_ant(t_ant *ant)
 {
-	t_ant	*ant;
 	t_room	*room;
 	t_list	*path;
 
-	ant = NULL;
 	room = NULL;
 	ft_printf("=============ANT============\n");
-	while(ant_list)
+	while(ant)
 	{
-		ant = ant_list->content;
 		path = ant->path;
 		if (path)
 			room = path->content;
@@ -177,8 +174,7 @@ void	print_ant(t_list *ant_list)
 			else
 				ft_printf("PATH : %s\n", path);
 		ft_printf("-----------------------\n\n");
-		ant_list = ant_list->next;
+		ant = ant->next;
 	}
 	ft_printf("============/ANT============\n");
-
 }

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/31 18:42:01 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/01 18:55:01 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct		s_ant
 {
 	int				name;
 	t_list			*path;
+	struct s_ant	*next;
+	struct s_ant	*previous;
 }					t_ant;
 
 /*
@@ -176,9 +178,15 @@ void				add_to_pathlist(t_list **path, t_list **elem);
 ** --------------- FT_SEND ANT ----------------
 ** --------------------------------------------
 */
-void				ft_send_ants(t_list **path_list, int nb_ant);
+void				ft_send_ant(t_list **path_list, int nb_ant, char *ant_name);
+void				move_ant(t_ant **ant_list);
+void				delete_ant_arrived(t_ant **to_ant_list, char *end_name);
+void				start_ant(t_ant **ant_list, t_list *path_list, int *ant_start);
+void				print_ant_list(t_ant *ant_list);
 void				ft_add_size_to_path(t_list **list_of_path);
-void				create_ant_list(t_list **ant_list, int nb_ant);
+void				create_ant_list(t_ant **ant_list, int nb_ant);
+t_ant 				*skip_used_ant(t_ant **ant_list);
+void				ft_del_elem(t_ant **ant_list, t_ant **ant);
 
 /*
 ** --------------------------------------------
@@ -190,7 +198,7 @@ int					ft_tablen(t_room **tab);
 void				print_explore(t_list *list);
 void				ft_print_pathlist(t_list **list_of_path);
 void				print_room_solo(t_room *room);
-void				print_ant(t_list *ant_list);
+void				print_ant(t_ant *ant);
 
 /*
 ** --------------------------------------------
