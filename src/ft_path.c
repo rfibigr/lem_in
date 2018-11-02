@@ -6,13 +6,11 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 14:49:31 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 20:11:02 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-
 
 int		ft_path(t_anthill *anthill, t_room **room)
 {
@@ -23,11 +21,6 @@ int		ft_path(t_anthill *anthill, t_room **room)
 	list_of_path = NULL;
 	start = anthill->start;
 	end = anthill->end;
-	//===========================
-	//mettre fonction dans create_list
-	anthill->nb_start_pipe = ft_tablen(start->connection);
-	anthill->nb_end_pipe = ft_tablen(end->connection);
-	//===========================
 	while (ft_connection_use(end->connection))
 	{
 		ft_shortest_path(&start);

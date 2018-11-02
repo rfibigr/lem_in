@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/10/31 13:52:25 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/11/02 19:45:50 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -41,15 +41,17 @@ NAME = 		lem-in
 #/********************** SOURCE *********************/
 SRC =		lem_in.c \
 			create_list.c \
-			create_list_tools.c \
 			create_room.c \
 			create_pipe.c \
 			ft_exit.c \
-			initialisation.c \
-			test_valid_anthill.c \
-			ft_path.c \
 			ft_path_tools.c \
+			ft_path.c \
+			initialisation.c \
+			print.c \
 			send_ants.c \
+			test_valid_anthill.c \
+			test_valid_pipe.c \
+			test_valid_room.c \
 			tool.c \
 
 
@@ -112,4 +114,4 @@ debug : $(OBJ)
 	@echo "$(LOW_GREEN) --Compiling lib--\tlibft"
 	@make -C $(LIB_PATH)/libft
 	@echo "$(PURPLE) --Linking--\t\tlem_in"
-	$(CC) -o lem_in_debug $^ $(LIBP) -fsanitize=address -O1 -fno-omit-frame-pointer
+	$(CC) -o $(NAME) $^ $(LIBP) -fsanitize=address -O1 -fno-omit-frame-pointer

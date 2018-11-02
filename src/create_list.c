@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:20:02 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/27 18:50:11 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 20:10:01 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ int		create_list(t_anthill *anthill, t_room **list_room, char *str)
 {
 	if (str[0] == 'L')
 		return (0);
-	if (str[0] == '#' && (anthill->command == COMMENT || anthill->command == 0))
+	else if (str[0] == '#')
 		ft_comment(anthill, str);
 	else if (anthill->nb_ant == 0)
 	{
 		if (!(ft_nbants(anthill, str)))
 			return (0);
 	}
-	else if (anthill->input_pipe == 0 && is_pipe(str) == 0)
+	else if (is_room(str) && anthill->input_pipe == 0)
 	{
 		if (!ft_create_room(anthill, list_room, str))
 			return (0);
 	}
-	else
+	else if (is_pipe(str))
 	{
-		if (!(*list_room))
-			return (0);
 		if (!(ft_create_pipe(anthill, list_room, str)))
 			return (0);
 	}
+	else
+		return (0);
 	return (1);
 }
 

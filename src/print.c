@@ -1,26 +1,78 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 19:38:52 by rfibigr          ###   ########.fr       */
+/*   Created: 2018/11/02 17:50:48 by rfibigr           #+#    #+#             */
+/*   Updated: 2018/11/02 18:04:58 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+void	print_ant_list(t_ant *ant_list)
+{
+	t_room *room;
 
-void	print_room(t_room *room, t_anthill anthill)
+	while (ant_list->path && ant_list)
+	{
+		room = ant_list->path->content;
+		ft_printf("L%d-%s", ant_list->name, room->name);
+		ant_list = ant_list->next;
+		if (ant_list)
+			write(1, " ", 1);
+		else
+			break ;
+	}
+	write(1, "\n", 1);
+}
+
+void	ft_print_input(t_list *list)
+{
+	while (list)
+	{
+		ft_printf("%s", list->content);
+		ft_printf("\n");
+		list = list->next;
+	}
+	ft_printf("\n");
+}
+
+void	ft_print_pathlist(t_list **list_of_path)
+{
+	int	i;
+	t_list	*tmp;
+	t_list	*path;
+	t_room	*room;
+
+	tmp = (*list_of_path);
+	room = NULL;
+	i = 0;
+	while (tmp)
+	{
+		ft_printf("--------- PATH NUMBER %d-------------\n", i);
+		path = tmp->content;
+		while (path)
+		{
+			room = path->content;
+			ft_printf("Room name : %s\n", room->name);
+			path = path->next;
+		}
+		ft_printf("------- END PATH NUMBER %d ----------\n", i );
+		i++;
+		tmp = tmp->next;
+	}
+
+}
+
+void	print_room_solo(t_room *room)
 {
 	t_room **connection;
 	int i;
 
 	ft_printf("=============ROOM============\n");
-		while (room)
-		{
 			connection = room->connection;
 			ft_printf("-----------------------\n");
 			ft_printf("NAME : %s\n", room->name);
@@ -43,56 +95,5 @@ void	print_room(t_room *room, t_anthill anthill)
 			}
 			ft_printf("--/LINK---\n");
 			ft_printf("-----------------------\n\n");
-			room = room->next;
-		}
 	ft_printf("============/ROOM============\n");
-
-	ft_printf("\n=============INFO============\n");
-		ft_printf("start name: %s\n", anthill.start->name);
-		ft_printf("end name : %s\n", anthill.end->name);
-		ft_printf("nb ant : %d\n", anthill.nb_ant);
-	ft_printf("============/INFO============\n");
-}
-
-
-void	print_explore(t_list *list)
-{
-	int i;
-	t_room *room;
-
-	i = 0;
-	while (list)
-	{
-		room = list->content;
-		ft_printf("list[%d]=", i);
-		ft_printf("name|%s|\n", room->name);
-		ft_printf("x|%d|\n", room->x_coord);
-		ft_printf("y|%d|\n", room->y_coord);
-		list = list->next;
-		i++;
-	}
-}
-
-void	print_ant(t_ant *ant)
-{
-	t_room	*room;
-	t_list	*path;
-
-	room = NULL;
-	ft_printf("=============ANT============\n");
-	while(ant)
-	{
-		path = ant->path;
-		if (path)
-			room = path->content;
-		ft_printf("-----------------------\n");
-		ft_printf("NAME : %d\n", ant->name);
-		if (path)
-			ft_printf("PATH : %s\n", room->name);
-		else
-			ft_printf("PATH : %s\n", path);
-		ft_printf("-----------------------\n\n");
-		ant = ant->next;
-	}
-	ft_printf("============/ANT============\n");
 }

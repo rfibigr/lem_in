@@ -6,11 +6,19 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:31:30 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 12:43:25 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 18:21:49 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+
+void	ft_exit_error(t_list *input, t_room *room, char **str)
+{
+	free_all(input, room, str);
+	ft_printf("Error\n");
+	exit(1);
+}
 
 void	ft_exit_malloc(void)
 {

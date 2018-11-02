@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 14:38:36 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 20:11:21 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,4 @@ int		ft_condition_to_explore(t_room *room, int index)
 	if (room->explored == 0 && room->index <= index && room->use == 0)
 		return (1);
 	return (0);
-}
-
-int		ft_tablen(t_room **tab)
-{
-	int	i;
-
-	i = 0;
-	while(tab[i])
-		i++;
-	return(i);
 }
