@@ -6,11 +6,20 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:20:02 by rfibigr           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/02 20:10:01 by rfibigr          ###   ########.fr       */
+=======
+/*   Updated: 2018/11/02 19:30:36 by rfibigr          ###   ########.fr       */
+>>>>>>> 474a9833cb2352108bc8b201d408dd746676b1a0
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+** creer une variable error : on rentre un enum correspondant a l'erreur que
+** l'on imprimme apres.
+*/
 
 int		create_list(t_anthill *anthill, t_room **list_room, char *str)
 {
