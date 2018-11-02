@@ -6,21 +6,12 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 20:42:19 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 22:56:00 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 10:32:26 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_tablen(t_room **tab)
-{
-	int	i;
-
-	i = 0;
-	while(tab[i])
-		i++;
-	return(i);
-}
 
 void	print_room(t_room *room, t_anthill anthill)
 {

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:02:05 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 23:27:14 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 12:23:33 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ int		ft_create_pipe(t_anthill *anthill, t_room **room, char *str)
 		ft_printf("error check duplicate pipe\n");
 		return (0);
 	}
-	ft_printf("split[0] = %s, split[1]",split[0], split[1]);
-	add_pipe_lst(room, split);
+	if (!(add_pipe_lst(room, split)))
+	{
+		free_split(split);
+		ft_printf("error room doesnt exist\n");
+		return (0);
+	}
 	return (1);
 }
 
@@ -53,14 +57,11 @@ int		check_duplicate_pipe(t_room **room, char *name_one, char *name_two)
 	{
 		if (!(ft_strcmp(tmp->name, name_one)))
 		{
-			if (tmp->connection)
+			while (tmp->connection[i])
 			{
-				while (tmp->connection[i])
-				{
-					if (!(ft_strcmp(tmp->connection[i]->name, name_two)))
-						return (0);
-					i++;
-				}
+				if (!(ft_strcmp(tmp->connection[i]->name, name_two)))
+					return (0);
+				i++;
 			}
 		}
 		tmp = tmp->next;
@@ -68,36 +69,22 @@ int		check_duplicate_pipe(t_room **room, char *name_one, char *name_two)
 	return (1);
 }
 
-void	add_pipe_lst(t_room **room, char **split)
+int		add_pipe_lst(t_room **room, char **split)
 {
 	t_room	*elem_one;
 	t_room	*elem_two;
 
 	elem_one = ft_search_name(room, split[0]);
 	elem_two = ft_search_name(room, split[1]);
+	if (elem_one == NULL || elem_two == NULL)
+		return (0);
 	ft_create_elem_pipe(&elem_one, elem_two);
 	ft_create_elem_pipe(&elem_two, elem_one);
 	free_split(split);
+	return (1);
 }
 
 void	ft_create_elem_pipe(t_room **elem_room, t_room *elem_connected)
-{
-	t_room	**tab_connection;
-
-	tab_connection = NULL;
-	if ((*elem_room)->connection == NULL)
-	{
-		if (!(tab_connection = (t_room**)malloc(sizeof(t_room *) * 2)))
-			ft_exit_malloc();
-		tab_connection[0] = elem_connected;
-		tab_connection[1] = NULL;
-		(*elem_room)->connection = tab_connection;
-	}
-	else
-		add_elem_connection(elem_room, elem_connected);
-}
-
-void	add_elem_connection(t_room **elem_room, t_room *elem_connected)
 {
 	t_room	**tab_connection;
 	t_room	**tab_new;
@@ -117,8 +104,7 @@ void	add_elem_connection(t_room **elem_room, t_room *elem_connected)
 		len++;
 	}
 	tab_new[len] = elem_connected;
-	len = len + 1;
-	tab_new[len] = NULL;
+	tab_new[len + 1] = NULL;
 	ft_memdel((void **)&((*elem_room)->connection));
 	(*elem_room)->connection = tab_new;
 }

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 18:55:01 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 14:38:35 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ typedef struct		s_ant
 	struct s_ant	*previous;
 }					t_ant;
 
+
+
+void				ft_print_input(t_list *list);
 /*
 ** --------------------------------------------
 ** -------------- CREATE LIST  ----------------
@@ -106,7 +109,8 @@ void				ft_comment(t_anthill *anthill, char *str);
 void				add_input(t_list **lst_input, char *str);
 int					is_pipe(char *str);
 t_room				*ft_search_name(t_room **room, char *name);
-int					ft_isnumber(char *str);
+int					pipe_valid_format(char **split);
+int					room_valid_format(char **split);
 
 /*
 ** --------------------------------------------
@@ -126,7 +130,7 @@ t_room				*ft_create_elem_room(char **split);
 */
 int					ft_create_pipe(t_anthill *anthill, t_room **room, char *str);
 int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
-void				add_pipe_lst(t_room **room, char **split);
+int					add_pipe_lst(t_room **room, char **split);
 void				ft_create_elem_pipe(t_room **elem_one, t_room *elem_two);
 void				add_elem_connection(t_room **elem_room, t_room *elem_connected);
 
@@ -143,8 +147,7 @@ void				init_anthill(t_anthill *anthill);
 ** --------------------------------------------
 */
 int					test_anthill(t_anthill anthill, t_room *room);
-int					pipe_valid_format(char **split);
-int					room_valid_format(char **split);
+int					test_valid_path(t_anthill *anthill, t_room **room);
 
 /*
 ** --------------------------------------------
@@ -163,7 +166,7 @@ void				del_list_to_explore(t_lst **list);
 */
 int					ft_condition_to_explore(t_room *room, int index);
 int					ft_connection_use(t_room **room);
-void				ft_reinit_room(t_room **room);
+void				ft_reinit_room(t_room **room, int option_use);
 
 /*
 ** --------------------------------------------
@@ -206,7 +209,7 @@ void				print_ant(t_ant *ant);
 ** --------------------------------------------
 */
 void				ft_exit_malloc(void);
-void				free_all(t_list *input, t_room *room);
+void				free_all(t_list *input, t_room *room, char **str);
 void				free_split(char **split);
 
 #endif

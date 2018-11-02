@@ -6,11 +6,13 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/01 19:37:13 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 14:49:31 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+
 
 int		ft_path(t_anthill *anthill, t_room **room)
 {
@@ -21,21 +23,19 @@ int		ft_path(t_anthill *anthill, t_room **room)
 	list_of_path = NULL;
 	start = anthill->start;
 	end = anthill->end;
+	//===========================
+	//mettre fonction dans create_list
 	anthill->nb_start_pipe = ft_tablen(start->connection);
 	anthill->nb_end_pipe = ft_tablen(end->connection);
+	//===========================
 	while (ft_connection_use(end->connection))
 	{
 		ft_shortest_path(&start);
 		if (!(ft_add_path(&list_of_path, &end, &start)))
 			break ;
-		ft_reinit_room(room);
+		ft_reinit_room(room, 0);
 	}
-	if (list_of_path == NULL)
-		ft_printf("Error path\n");
-	else
-	{
-		ft_send_ant(&list_of_path, anthill->nb_ant, end->name);
-	}
+	ft_send_ant(&list_of_path, anthill->nb_ant, end->name);
 	//free path;
 	return (1);
 }
@@ -77,7 +77,6 @@ int		ft_add_path(t_list **path_list, t_room **end, t_room **start)
 	room = (*end)->parent;
 	if (!room)
 		return (0);
-	//OPTIONNELLE
 	ft_list_push_front(&path, *end);
 	while (room->name != (*start)->name)
 	{
@@ -85,8 +84,6 @@ int		ft_add_path(t_list **path_list, t_room **end, t_room **start)
 		ft_list_push_front(&path, room);
 		room = room->parent;
 	}
-	//OPTIONNELLE
-	//ft_list_push_front(&path, room);
 	ft_list_push_back(path_list, path);
 	return (1);
 }

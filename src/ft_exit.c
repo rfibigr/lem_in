@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:31:30 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/10/26 17:14:12 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 12:43:25 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_exit_malloc(void)
 	exit(1);
 }
 
-void	free_all(t_list *input, t_room *room)
+void	free_all(t_list *input, t_room *room, char **str)
 {
 	t_room	*tmp;
 	t_list	*lst_tmp;
@@ -39,6 +39,7 @@ void	free_all(t_list *input, t_room *room)
 		ft_memdel((void**)&(tmp->name));
 		ft_memdel((void**)&tmp);
 	}
+	ft_memdel((void**)str);
 }
 
 void	free_split(char **split)
