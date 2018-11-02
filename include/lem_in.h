@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 14:38:35 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 19:39:08 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,8 @@ typedef	struct		s_room
 typedef struct		s_anthill
 {
 	int				nb_ant;
-	int				nb_start_pipe;
-	int				nb_end_pipe;
 	int				command;
 	int				input_pipe;
-	t_list			*input;
 	t_room			*start;
 	t_room			*end;
 }					t_anthill;
@@ -90,7 +87,6 @@ typedef struct		s_ant
 
 
 
-void				ft_print_input(t_list *list);
 /*
 ** --------------------------------------------
 ** -------------- CREATE LIST  ----------------
@@ -100,28 +96,25 @@ void				ft_print_input(t_list *list);
 int					create_list(t_anthill *anthill, t_room **list_room, char *str);
 int					ft_nbants(t_anthill *anthill, char *str);
 void				ft_comment(t_anthill *anthill, char *str);
-
-/*
-** --------------------------------------------
-** -------------- CREATE LIST TOOL-------------
-** --------------------------------------------
-*/
-void				add_input(t_list **lst_input, char *str);
-int					is_pipe(char *str);
 t_room				*ft_search_name(t_room **room, char *name);
-int					pipe_valid_format(char **split);
-int					room_valid_format(char **split);
 
 /*
 ** --------------------------------------------
 ** -------------- CREATE ROOM  ----------------
 ** --------------------------------------------
 */
-
 int					ft_create_room(t_anthill *anthill, t_room **room, char *str);
-int					check_duplicate_room(t_room **room, char *name);
 void				add_room_lst(t_room **room, char **split, t_anthill *anthill);
 t_room				*ft_create_elem_room(char **split);
+
+/*
+** --------------------------------------------
+** -------------- TEST VALID ROOM--------------
+** --------------------------------------------
+*/
+int					room_valid_format(t_room **room, char **split);
+int					check_duplicate_room(t_room **room, char *name);
+int					is_room(char *str);
 
 /*
 ** --------------------------------------------
@@ -129,10 +122,18 @@ t_room				*ft_create_elem_room(char **split);
 ** --------------------------------------------
 */
 int					ft_create_pipe(t_anthill *anthill, t_room **room, char *str);
-int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
 int					add_pipe_lst(t_room **room, char **split);
 void				ft_create_elem_pipe(t_room **elem_one, t_room *elem_two);
 void				add_elem_connection(t_room **elem_room, t_room *elem_connected);
+
+/*
+** --------------------------------------------
+** --------------TEST VALID PIPE --------------
+** --------------------------------------------
+*/
+int					pipe_valid_format(t_room **room, char **split);
+int					is_pipe(char *str);
+int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
 
 /*
 ** --------------------------------------------
@@ -140,6 +141,7 @@ void				add_elem_connection(t_room **elem_room, t_room *elem_connected);
 ** --------------------------------------------
 */
 void				init_anthill(t_anthill *anthill);
+void				init_room(t_room **elem);
 
 /*
 ** --------------------------------------------
@@ -185,11 +187,18 @@ void				ft_send_ant(t_list **path_list, int nb_ant, char *ant_name);
 void				move_ant(t_ant **ant_list);
 void				delete_ant_arrived(t_ant **to_ant_list, char *end_name);
 void				start_ant(t_ant **ant_list, t_list *path_list, int *ant_start);
-void				print_ant_list(t_ant *ant_list);
 void				ft_add_size_to_path(t_list **list_of_path);
 void				create_ant_list(t_ant **ant_list, int nb_ant);
 t_ant 				*skip_used_ant(t_ant **ant_list);
 void				ft_del_elem(t_ant **ant_list, t_ant **ant);
+
+/*
+** --------------------------------------------
+** ------------------ PRINT -------------------
+** --------------------------------------------
+*/
+void				ft_print_input(t_list *list);
+void				print_ant_list(t_ant *ant_list);
 
 /*
 ** --------------------------------------------
@@ -208,6 +217,7 @@ void				print_ant(t_ant *ant);
 ** ------------------- EXIT -------------------
 ** --------------------------------------------
 */
+void				ft_exit_error(t_list *input, t_room *room, char **str);
 void				ft_exit_malloc(void);
 void				free_all(t_list *input, t_room *room, char **str);
 void				free_split(char **split);

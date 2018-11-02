@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 14:47:28 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 19:44:46 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,23 @@ int		main()
 {
 	t_anthill	anthill;
 	t_room		*list_room;
+	t_list		*lst_input;
 	char		*str;
 
 	list_room = NULL;
 	str	= NULL;
+	lst_input = NULL;
 	init_anthill(&anthill);
 	while (get_next_line(0, &str))
 	{
 		if (!(create_list(&anthill, &list_room, str)))
 			break;
-		add_input(&anthill.input, str);
+		ft_list_push_back_cpy(&lst_input, str, ft_strlen(str) + 1);
 	}
-	if (!(test_anthill(anthill, list_room)) || !(test_valid_path(&anthill, &list_room)))
-	{
-		free_all(anthill.input, list_room, &str);
-		ft_printf("Error\n");
-		return (0);
-	}
-	ft_print_input(anthill.input);
+	if (!(test_anthill(anthill, list_room)))
+		ft_exit_error(lst_input, list_room, &str);
+	ft_print_input(lst_input);
 	ft_path(&anthill, &list_room);
-	free_all(anthill.input, list_room, &str);
+	free_all(lst_input, list_room, &str);
 	return (0);
-}
-
-void	ft_print_input(t_list *list)
-{
-	while (list)
-	{
-		ft_printf("%s", list->content);
-		ft_printf("\n");
-		list = list->next;
-	}
-	ft_printf("\n");
 }

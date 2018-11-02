@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 18:35:24 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 14:56:27 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 19:45:06 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		test_anthill(t_anthill anthill, t_room *room)
 		ft_printf("No command end\n");
 		return (0);
 	}
-	if (anthill.input == NULL)
+	if(test_valid_path(&anthill, &room) == 0)
 	{
-		ft_printf("No input\n");
+		ft_printf("No valid path\n");
 		return (0);
 	}
 	return (1);

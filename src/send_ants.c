@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 12:48:35 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/02 17:56:42 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,6 @@ void	ft_send_ant(t_list **path_list, int nb_ant, char *end_name)
 	}
 }
 
-void	print_ant_list(t_ant *ant_list)
-{
-	t_room *room;
-
-	while (ant_list->path && ant_list)
-	{
-		room = ant_list->path->content;
-		ft_printf("L%d-%s", ant_list->name, room->name);
-		ant_list = ant_list->next;
-		if (ant_list)
-			write(1, " ", 1);
-		else
-			break ;
-	}
-	write(1, "\n", 1);
-}
 
 void	start_ant(t_ant **ant_list, t_list *path_list, int *ant_start)
 {
