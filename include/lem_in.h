@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 14:20:25 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 15:22:44 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,14 +185,19 @@ void				add_to_pathlist(t_list **path, t_list **elem);
 ** --------------------------------------------
 */
 void				ft_send_ant(t_list **path_list, int nb_ant, char *ant_name);
+void				create_ant_list(t_ant **ant_list, int nb_ant);
+void				ft_add_size_to_path(t_list **list_of_path);
+
+/*
+** --------------------------------------------
+** --------------- FT_SEND ANT 2 --------------
+** --------------------------------------------
+*/
+void				start_ant(t_ant **ant_list, t_list *path_list, int *ant_start);
+t_ant 				*skip_used_ant(t_ant **ant_list);
 void				move_ant(t_ant **ant_list);
 void				delete_ant_arrived(t_ant **to_ant_list, char *end_name);
-void				start_ant(t_ant **ant_list, t_list *path_list, int *ant_start);
-void				ft_add_size_to_path(t_list **list_of_path);
-void				create_ant_list(t_ant **ant_list, int nb_ant);
-t_ant 				*skip_used_ant(t_ant **ant_list);
-void				ft_del_elem(t_ant **ant_list, t_ant **ant);
-void				ft_send_all_ant(int nb_ant, char *end_name);
+void				ft_delete_ant(t_ant **ant, t_ant **ant_list);
 
 /*
 ** --------------------------------------------
@@ -201,6 +206,7 @@ void				ft_send_all_ant(int nb_ant, char *end_name);
 */
 void				ft_print_input(t_list *list);
 void				print_ant_list(t_ant *ant_list);
+void				ft_send_all_ant(int nb_ant, char *end_name);
 
 /*
 ** --------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 14:31:55 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 15:00:25 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	delete_ant_arrived(t_ant **ant_list, char *end_name)
 {
 	t_ant	*ant;
 	t_room	*room;
-	t_ant	*previous;
 
 	ant = *ant_list;
+	//protection segfault
 	room = ant->path->content;
 	while (ant)
 	{
@@ -78,23 +78,29 @@ void	delete_ant_arrived(t_ant **ant_list, char *end_name)
 			break ;
 		room = ant->path->content;
 		if(!ft_strcmp(room->name, end_name))
-		{
-			previous = ant->previous;
-			if (previous == NULL)
-			{
-				*ant_list = (*ant_list)->next;
-				if (*ant_list)
-					(*ant_list)->previous = NULL;
-			}
-			else
-			{
-				ant->next->previous = ant->previous;
-				ant->previous->next = ant->next;
-			}
-			ft_memdel((void**)&ant);
-			ant = *ant_list;
-		}
+			ft_delete_ant(&ant, ant_list);
 		else
 			ant = ant->next;
 	}
+}
+
+void	ft_delete_ant(t_ant **ant, t_ant **ant_list)
+{
+	t_ant	*previous;
+
+	previous = (*ant)->previous;
+	if (previous == NULL)
+	{
+		(*ant_list) = (*ant_list)->next;
+		if (*ant_list)
+			(*ant_list)->previous = NULL;
+	}
+	else
+	{
+		(*ant)->next->previous = (*ant)->previous;
+		(*ant)->previous->next = (*ant)->next;
+	}
+	ft_memdel((void**)ant);
+	//repart du debut ?
+	*ant = *ant_list;
 }

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:20:02 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 13:41:16 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 15:21:55 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	ft_comment(t_anthill *anthill, char *str)
 	{
 		anthill->command = TRUE;
 		if (!(ft_strcmp(str, "##start")))
+		{
 			anthill->command = START;
+		}
 		else if (!(ft_strcmp(str, "##end")))
 			anthill->command = END;
 	}
