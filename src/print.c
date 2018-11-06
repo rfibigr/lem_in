@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 17:50:48 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 18:04:58 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 14:22:01 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,21 @@ void	print_ant_list(t_ant *ant_list)
 			write(1, " ", 1);
 		else
 			break ;
+	}
+	write(1, "\n", 1);
+}
+
+void		ft_send_all_ant(int nb_ant, char *end_name)
+{
+	int	i;
+
+	i = 1;
+	while (i <= nb_ant)
+	{
+		ft_printf("L%d-%s", i, end_name);
+		if (i != nb_ant)
+			write(1, " ", 1);
+		i++;
 	}
 	write(1, "\n", 1);
 }
@@ -52,7 +67,7 @@ void	ft_print_pathlist(t_list **list_of_path)
 	i = 0;
 	while (tmp)
 	{
-		ft_printf("--------- PATH NUMBER %d-------------\n", i);
+		ft_printf("=========== PATH NUMBER %d =============\n", i);
 		path = tmp->content;
 		while (path)
 		{
@@ -60,7 +75,7 @@ void	ft_print_pathlist(t_list **list_of_path)
 			ft_printf("Room name : %s\n", room->name);
 			path = path->next;
 		}
-		ft_printf("------- END PATH NUMBER %d ----------\n", i );
+		ft_printf("========== /PATH NUMBER %d =============\n", i);
 		i++;
 		tmp = tmp->next;
 	}

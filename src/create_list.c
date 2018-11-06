@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:20:02 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 20:18:08 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 13:41:16 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,10 @@ int		create_list(t_anthill *anthill, t_room **list_room, char *str)
 
 int		ft_nbants(t_anthill *anthill, char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(ft_isdigit(str[i])))
-			return (0);
-		i++;
-	}
+	if (!ft_isinteger(str))
+		return (0);
 	anthill->nb_ant = ft_atoi(str);
-	if (anthill->nb_ant == 0)
+	if (anthill->nb_ant <= 0)
 		return (0);
 	return (1);
 }

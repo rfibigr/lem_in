@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 17:18:16 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 19:44:59 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 13:39:26 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,19 @@
 int		is_pipe(char *str)
 {
 	int i;
+	int count;
 
 	i = 0;
-	if (!(ft_isascii(str[0])))
-		return (0);
-	while (str[i] != '-' && str[i])
-	{
-		if (!(ft_isascii(str[i])))
-			return (0);
-		i++;
-	}
-	if (str[i] == 0)
-		return (0);
-	i++;
+	count = 0;
 	while (str[i])
 	{
-		if (!(ft_isascii(str[i])))
-			return (0);
+		if (str[i] == '-')
+			count++;
 		i++;
 	}
-	if (!(ft_isascii(str[i - 1])))
+	if (i < 3)
+		return (0);
+	if (str[0] == '-' || str[i-1] == '-' || count != 1)
 		return (0);
 	return (1);
 }
@@ -50,20 +43,6 @@ int		pipe_valid_format(t_room **room, char **split)
 		return (0);
 	if (!(split[0] && split[1]))
 		return (0);
-	i = 0;
-	while (split[0][i])
-	{
-		if (!(ft_isascii(split[0][i])))
-			return (0);
-		i++;
-	}
-	i = 0;
-	while (split[1][i])
-	{
-		if (!(ft_isascii(split[1][i])))
-			return (0);
-		i++;
-	}
 	if (!(check_duplicate_pipe(room, split[0], split[1])))
 		return (0);
 	return (1);

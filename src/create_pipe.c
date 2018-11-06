@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:02:05 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 18:43:59 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 13:50:31 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 int		ft_create_pipe(t_anthill *anthill, t_room **room, char *str)
 {
 	char	**split;
-	int		i;
 
 	if (!*room)
 		return (0);
 	anthill->command = 0;
 	anthill->input_pipe = 1;
-	i = 0;
 	split = ft_strsplit(str, '-');
 	if (pipe_valid_format(room, split))
-		add_pipe_lst(room, split);
+	{
+		if (!(add_pipe_lst(room, split)))
+			return (0);
+	}
 	else
 	{
+		ft_printf("error : room format\n");
 		free_split(split);
 		return (0);
 	}
@@ -38,13 +40,10 @@ int		add_pipe_lst(t_room **room, char **split)
 	t_room	*elem_one;
 	t_room	*elem_two;
 
-	//-----------------------------------
-	// Test a mettre dans la fonction test_valid_pipe
 	elem_one = ft_search_name(room, split[0]);
 	elem_two = ft_search_name(room, split[1]);
 	if (elem_one == NULL || elem_two == NULL)
 		return (0);
-	//-----------------------------------
 	ft_create_elem_pipe(&elem_one, elem_two);
 	ft_create_elem_pipe(&elem_two, elem_one);
 	free_split(split);

@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 19:39:08 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 14:20:25 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int					test_valid_path(t_anthill *anthill, t_room **room);
 ** --------------- FT_PATH  -------------------
 ** --------------------------------------------
 */
-int					ft_path(t_anthill *anthill, t_room **room);
+void				ft_path(t_anthill *anthill, t_room **room);
 int					ft_add_path(t_list **path_list, t_room **end, t_room **start);
 void				ft_shortest_path(t_room **start);
 void				add_list_to_explore(t_room **elem, t_lst **list_to_explore);
@@ -169,6 +169,7 @@ void				del_list_to_explore(t_lst **list);
 int					ft_condition_to_explore(t_room *room, int index);
 int					ft_connection_use(t_room **room);
 void				ft_reinit_room(t_room **room, int option_use);
+int					direct_path(t_room **room, char *start_name);
 
 /*
 ** --------------------------------------------
@@ -191,6 +192,7 @@ void				ft_add_size_to_path(t_list **list_of_path);
 void				create_ant_list(t_ant **ant_list, int nb_ant);
 t_ant 				*skip_used_ant(t_ant **ant_list);
 void				ft_del_elem(t_ant **ant_list, t_ant **ant);
+void				ft_send_all_ant(int nb_ant, char *end_name);
 
 /*
 ** --------------------------------------------
