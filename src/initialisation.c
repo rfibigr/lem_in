@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:30:26 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 19:41:46 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/07 19:44:21 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,16 @@ void	init_room(t_room **elem)
 	if (!((*elem)->connection = (t_room**)malloc(sizeof(t_room *) * 2)))
 			ft_exit_malloc();;
 	(*elem)->connection[0] = NULL;
+}
+
+t_mlx	init_windows(void)
+{
+	t_mlx	mlx;
+
+	mlx.init = mlx_init();
+	mlx.name = mlx_new_window(mlx.init, IMG_X, IMG_Y, "Lem-In");
+	mlx.image = mlx_new_image(mlx.init, IMG_X, IMG_Y);
+	mlx.str = mlx_get_data_addr(mlx.image, &mlx.bpp,
+												&mlx.size_line, &mlx.endian);
+	return (mlx);
 }

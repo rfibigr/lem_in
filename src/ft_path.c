@@ -6,19 +6,17 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/27 19:03:31 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 14:33:35 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/07 20:30:52 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ft_path(t_anthill *anthill, t_room **room)
+void	ft_path(t_anthill *anthill, t_room **room, t_list **list_of_path)
 {
 	t_room	*start;
 	t_room	*end;
-	t_list	*list_of_path;
 
-	list_of_path = NULL;
 	start = anthill->start;
 	end = anthill->end;
 	if (direct_path(end->connection, start->name))
@@ -29,11 +27,11 @@ void	ft_path(t_anthill *anthill, t_room **room)
 	while (ft_connection_use(end->connection))
 	{
 		ft_shortest_path(&start);
-		if (!(ft_add_path(&list_of_path, &end, &start)))
+		if (!(ft_add_path(list_of_path, &end, &start)))
 			break ;
 		ft_reinit_room(room, 0);
 	}
-	ft_send_ant(&list_of_path, anthill->nb_ant, end->name);
+	ft_send_ant(list_of_path, anthill->nb_ant, end->name);
 	//free path;
 }
 

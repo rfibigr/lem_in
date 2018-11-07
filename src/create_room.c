@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:51:33 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/02 19:45:09 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/07 20:18:43 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_create_room(t_anthill *anthill, t_room **room, char *str)
 	else
 	{
 		free_split(split);
-		ft_printf("error : room format\n");
 		return (0);
 	}
 	free_split(split);

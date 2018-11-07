@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:20:02 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:21:55 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 15:46:20 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ int		ft_nbants(t_anthill *anthill, char *str)
 		return (0);
 	anthill->nb_ant = ft_atoi(str);
 	if (anthill->nb_ant <= 0)
+	{
+		ft_printf("stop acquisition: no ant\n");
 		return (0);
+	}
 	return (1);
 }
 

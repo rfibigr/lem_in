@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/11/06 14:32:58 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/11/07 20:39:23 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -54,6 +54,9 @@ SRC =		lem_in.c \
 			test_valid_pipe.c \
 			test_valid_room.c \
 			tool.c \
+			visualizer.c \
+			visualizer_scale.c \
+			visualizer_bresenham.c \
 
 
 UNAME := $(shell uname)

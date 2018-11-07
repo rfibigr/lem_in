@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 17:26:46 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 13:39:17 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/06 15:43:18 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ int		check_duplicate_room(t_room **room, char *name)
 	while (tmp)
 	{
 		if (!(ft_strcmp(tmp->name, name)))
-		{
-			ft_printf("%s | %s\n", tmp->name, name);
 			return (0);
-		}
 		tmp = tmp->next;
 	}
 	return (1);

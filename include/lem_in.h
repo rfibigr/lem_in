@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:22:44 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/07 20:45:18 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # define START 2
 # define END 3
 # define COMMENT 4
+# define IMG_X 1000
+# define IMG_Y 1000
 
 /*
 ** --------------------------------------------
@@ -71,6 +73,17 @@ typedef struct		s_mlx
 	char			*str;
 }					t_mlx;
 
+typedef struct		s_loop
+{
+	t_mlx			*mlx;
+	t_list			*path;
+	t_room			*room;
+	t_anthill		*anthill;
+	int				speed;
+	int				iteration;
+	int				start;
+}					t_loop;
+
 typedef struct		s_lst
 {
 	t_room			*elem;
@@ -85,8 +98,38 @@ typedef struct		s_ant
 	struct s_ant	*previous;
 }					t_ant;
 
+typedef struct		s_scale
+{
+	int				x_min;
+	int				y_min;
+	int				x_max;
+	int				y_max;
+	int				ratio;
+	int				decal_x;
+	int				decal_y;
+}					t_scale;
 
+typedef struct		s_coord
+{
+	int				x;
+	int				y;
+}					t_coord;
 
+typedef struct		s_line
+{
+	int				dx;
+	int				dy;
+	int				y1;
+	int				x1;
+	int				x2;
+	int				y2;
+	int				dx_i;
+	int				dy_i;
+	int				xsign;
+	int				ysign;
+	int				ex;
+	int				ey;
+}					t_line;
 /*
 ** --------------------------------------------
 ** -------------- CREATE LIST  ----------------
@@ -142,7 +185,6 @@ int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
 */
 void				init_anthill(t_anthill *anthill);
 void				init_room(t_room **elem);
-
 /*
 ** --------------------------------------------
 ** -----------TEST VALID ANTHILL  -------------
@@ -156,7 +198,7 @@ int					test_valid_path(t_anthill *anthill, t_room **room);
 ** --------------- FT_PATH  -------------------
 ** --------------------------------------------
 */
-void				ft_path(t_anthill *anthill, t_room **room);
+void				ft_path(t_anthill *anthill, t_room **room, t_list **list_of_path);
 int					ft_add_path(t_list **path_list, t_room **end, t_room **start);
 void				ft_shortest_path(t_room **start);
 void				add_list_to_explore(t_room **elem, t_lst **list_to_explore);
@@ -229,5 +271,34 @@ void				ft_exit_error(t_list *input, t_room *room, char **str);
 void				ft_exit_malloc(void);
 void				free_all(t_list *input, t_room *room, char **str);
 void				free_split(char **split);
+
+/*
+** --------------------------------------------
+** -------------- VISUALIZER ------------------
+** --------------------------------------------
+*/
+void	visualizer(char **str, t_room *room, t_list *path, t_anthill anthill);
+t_mlx				init_windows(void);
+int		key_hook(int key, t_room *room);
+/*
+** -SCALE
+*/
+void	draw_anthill(t_room *room, t_anthill anthill, t_list *path, t_mlx *mlx);
+t_scale		ft_calcul_size(t_room *room);
+void		ft_resize_coord(t_scale scale, t_room *room);
+void	trace_border(t_mlx *mlx);
+void	draw_image(t_mlx *mlx);
+
+
+void	fill_pixel(char **img_str, int x, int y, unsigned long color);
+
+/*
+** -bresenham
+*/
+void	ft_bresenham(t_coord initial, t_coord final, t_mlx window, int color);
+void	ft_x_inc(t_line line, t_mlx window, int color);
+void	ft_y_inc(t_line line, t_mlx window, int color);
+void	trace_square(int x1, int y1, int x2, int y2, t_mlx mlx);
+void	trace_room(t_room *room, t_mlx mlx);
 
 #endif
