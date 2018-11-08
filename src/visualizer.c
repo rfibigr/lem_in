@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 14:57:32 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 19:51:29 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 22:14:59 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,8 @@ int		visualizer_ant(t_loop *loop)
 void	print_pixel_ant(t_ant *ant_list, t_room *room, t_mlx mlx, t_list *path_list, t_anthill anthill)
 {
 	t_list	*path;
-	t_room	*room_ant;
 	char	*str;
 
-	room_ant = NULL;
 	path = NULL;
 	mlx_clear_window(mlx.init, mlx.name);
 	trace_room(room, mlx);

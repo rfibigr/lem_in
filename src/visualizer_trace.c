@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:22:10 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 19:38:01 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 22:16:30 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,12 @@ void	trace_square(t_coord middle, int wide, int color, t_mlx mlx)
 {
 	t_coord	up_left;
 	t_coord	up_right;
-	t_coord	down_right;
-	t_coord	down_left;
 
 	up_left.x = middle.x - wide;
 	up_left.y = middle.y - wide;
 	up_right.x = middle.x + wide;
 	up_right.y = middle.y - wide;
-	down_left.x = middle.x - wide;
-	down_left.y = middle.y + wide;
-	down_right.x = middle.x + wide;
-	down_right.y = middle.y + wide;
-	while(down_left.y >= up_left.y)
+	while(middle.y + wide >= up_left.y)
 	{
 		ft_bresenham(up_left, up_right, mlx, color);
 		up_left.y = up_left.y + 1;
