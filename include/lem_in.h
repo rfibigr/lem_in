@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/07 20:45:18 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 19:34:54 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define COMMENT 4
 # define IMG_X 1000
 # define IMG_Y 1000
+# define WIDE 25
 
 /*
 ** --------------------------------------------
@@ -44,6 +45,7 @@ typedef	struct		s_room
 	char			*name;
 	int				x_coord;
 	int				y_coord;
+	int				color;
 	struct s_room	**connection;
 	struct s_room	*next;
 	int				explored;
@@ -73,17 +75,6 @@ typedef struct		s_mlx
 	char			*str;
 }					t_mlx;
 
-typedef struct		s_loop
-{
-	t_mlx			*mlx;
-	t_list			*path;
-	t_room			*room;
-	t_anthill		*anthill;
-	int				speed;
-	int				iteration;
-	int				start;
-}					t_loop;
-
 typedef struct		s_lst
 {
 	t_room			*elem;
@@ -97,6 +88,18 @@ typedef struct		s_ant
 	struct s_ant	*next;
 	struct s_ant	*previous;
 }					t_ant;
+
+typedef struct		s_loop
+{
+	t_mlx			mlx;
+	t_list			*path;
+	t_room			*room;
+	t_anthill		anthill;
+	t_ant			*ant_list;
+	int				ant_start;
+	int				speed;
+	int				start;
+}					t_loop;
 
 typedef struct		s_scale
 {
@@ -185,6 +188,8 @@ int					check_duplicate_pipe(t_room **room, char *name_one, char *name_two);
 */
 void				init_anthill(t_anthill *anthill);
 void				init_room(t_room **elem);
+t_mlx				init_windows(void);
+t_loop				init_loop(void);
 /*
 ** --------------------------------------------
 ** -----------TEST VALID ANTHILL  -------------
@@ -278,8 +283,7 @@ void				free_split(char **split);
 ** --------------------------------------------
 */
 void	visualizer(char **str, t_room *room, t_list *path, t_anthill anthill);
-t_mlx				init_windows(void);
-int		key_hook(int key, t_room *room);
+int		key_hook(int key, t_loop *loop);
 /*
 ** -SCALE
 */
@@ -287,6 +291,7 @@ void	draw_anthill(t_room *room, t_anthill anthill, t_list *path, t_mlx *mlx);
 t_scale		ft_calcul_size(t_room *room);
 void		ft_resize_coord(t_scale scale, t_room *room);
 void	trace_border(t_mlx *mlx);
+void	trace_path(t_list *path, t_mlx mlx, t_room *first);
 void	draw_image(t_mlx *mlx);
 
 
@@ -298,7 +303,15 @@ void	fill_pixel(char **img_str, int x, int y, unsigned long color);
 void	ft_bresenham(t_coord initial, t_coord final, t_mlx window, int color);
 void	ft_x_inc(t_line line, t_mlx window, int color);
 void	ft_y_inc(t_line line, t_mlx window, int color);
-void	trace_square(int x1, int y1, int x2, int y2, t_mlx mlx);
+void	trace_square(t_coord middle, int wide, int color, t_mlx mlx);
 void	trace_room(t_room *room, t_mlx mlx);
+
+/*
+** -visu ant
+*/
+void	print_pixel_ant(t_ant *ant_list, t_room *room, t_mlx mlx, t_list *path_list, t_anthill anthill);
+int		visualizer_ant(t_loop *loop);
+int		stop_prog(t_loop *loop);
+
 
 #endif

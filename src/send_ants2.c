@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:00:25 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 16:21:29 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	delete_ant_arrived(t_ant **ant_list, char *end_name)
 	t_room	*room;
 
 	ant = *ant_list;
-	//protection segfault
+	if (ant == NULL || ant->path == NULL)
+		return ;
 	room = ant->path->content;
 	while (ant)
 	{

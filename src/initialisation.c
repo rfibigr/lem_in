@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:30:26 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/07 19:44:21 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 18:43:44 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_room(t_room **elem)
 	(*elem)->name = NULL;
 	(*elem)->x_coord = 0;
 	(*elem)->y_coord = 0;
+	(*elem)->color = 0xFFFFFF;
 	(*elem)->explored = 0;
 	(*elem)->index = 0;
 	(*elem)->use = 0;
@@ -46,4 +47,16 @@ t_mlx	init_windows(void)
 	mlx.str = mlx_get_data_addr(mlx.image, &mlx.bpp,
 												&mlx.size_line, &mlx.endian);
 	return (mlx);
+}
+
+t_loop	init_loop(void)
+{
+	t_loop	loop;
+
+	loop.path = NULL;
+	loop.room = NULL;
+	loop.ant_list = NULL;
+	loop.speed = 0;
+	loop.start = 0;
+	return (loop);
 }

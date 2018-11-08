@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:58:08 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/07 19:12:28 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 18:59:25 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ void		ft_resize_coord(t_scale scale, t_room *room)
 		scale.ratio = ratio_y;
 	scale.decal_x = -1 * (scale.x_min * scale.ratio) + 50;
 	scale.decal_y = (scale.y_max * scale.ratio) + 50;
-
-	// ft_printf("xmin = %d | xmax = %d | ymin = %d | ymax = %d |\n",
-	// 		scale.x_min, scale. x_max, scale.y_min, scale.y_max);
-	// ft_printf("ratio_x = %d | ratio_y = %d | ratio = %d\n",ratio_x, ratio_y, scale.ratio);
-	// ft_printf("decalx = %d | decaly %d\n", scale.decal_x, scale.decal_y);
-
 	while (room)
 	{
 		room->x_coord = room->x_coord * (scale.ratio) + scale.decal_x;

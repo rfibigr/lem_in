@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 14:51:33 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/07 20:18:43 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 12:23:17 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,15 @@ void	add_room_lst(t_room **room, char **split, t_anthill *anthill)
 	elem->x_coord = ft_atoi(split[1]);
 	elem->y_coord = ft_atoi(split[2]);
 	if (anthill->command == START)
+	{
+		elem->color = 0x008000;
 		anthill->start = elem;
+	}
 	else if (anthill->command == END)
+	{
+		elem->color = 0XFF0000;
 		anthill->end = elem;
+	}
 	anthill->command = 0;
 	elem->next = *room;
 	*room = elem;

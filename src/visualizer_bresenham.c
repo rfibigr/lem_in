@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 13:57:48 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/07 20:32:28 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/08 19:38:04 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_bresenham(t_coord initial, t_coord final, t_mlx window, int color)
 	line.x2 = final.x;
 	line.y1 = initial.y;
 	line.y2 = final.y;
-	line.ex = abs(line.x2 - line.x1);
-	line.ey = abs(line.y2 - line.y1);
+	line.ex = ft_abs(line.x2 - line.x1);
+	line.ey = ft_abs(line.y2 - line.y1);
 	line.dy_i = line.ey;
 	line.dx_i = line.ex;
 	line.dy = 2 * line.ey;
@@ -34,7 +34,7 @@ void	ft_bresenham(t_coord initial, t_coord final, t_mlx window, int color)
 		line.xsign = -1;
 	if (line.dx_i > line.dy_i)
 		ft_x_inc(line, window, color);
-	if (line.dx_i < line.dy_i)
+	else
 		ft_y_inc(line, window, color);
 }
 

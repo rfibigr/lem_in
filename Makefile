@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/11/07 20:39:23 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/11/08 16:14:39 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -56,6 +56,7 @@ SRC =		lem_in.c \
 			tool.c \
 			visualizer.c \
 			visualizer_scale.c \
+			visualizer_trace.c \
 			visualizer_bresenham.c \
 
 
@@ -115,7 +116,5 @@ fclean : clean
 re: fclean all
 
 debug : $(OBJ)
-	@echo "$(LOW_GREEN) --Compiling lib--\tlibft"
-	@make -C $(LIB_PATH)/libft
 	@echo "$(PURPLE) --Linking--\t\tlem_in"
 	$(CC) -o $(NAME) $^ $(LIBP) -fsanitize=address -O1 -fno-omit-frame-pointer
