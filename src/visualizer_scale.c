@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:58:08 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 18:59:25 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 10:21:46 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void		ft_resize_coord(t_scale scale, t_room *room)
 	while (room)
 	{
 		room->x_coord = room->x_coord * (scale.ratio) + scale.decal_x;
-		room->y_coord =  - room->y_coord * (scale.ratio) + scale.decal_y;
+		room->y_coord = -room->y_coord * (scale.ratio) + scale.decal_y;
 		room = room->next;
 	}
 }

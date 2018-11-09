@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 16:21:29 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 10:03:14 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	start_ant(t_ant **ant_list, t_list *path_list, int *ant_start)
 	}
 }
 
-t_ant 	*skip_used_ant(t_ant **ant_list)
+t_ant	*skip_used_ant(t_ant **ant_list)
 {
 	t_ant	*ant_list_free;
 
@@ -75,10 +75,10 @@ void	delete_ant_arrived(t_ant **ant_list, char *end_name)
 	room = ant->path->content;
 	while (ant)
 	{
-		if(!(ant->path))
+		if (!(ant->path))
 			break ;
 		room = ant->path->content;
-		if(!ft_strcmp(room->name, end_name))
+		if (!ft_strcmp(room->name, end_name))
 			ft_delete_ant(&ant, ant_list);
 		else
 			ant = ant->next;
@@ -102,6 +102,5 @@ void	ft_delete_ant(t_ant **ant, t_ant **ant_list)
 		(*ant)->previous->next = (*ant)->next;
 	}
 	ft_memdel((void**)ant);
-	//repart du debut ?
 	*ant = *ant_list;
 }

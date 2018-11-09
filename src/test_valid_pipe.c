@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 17:18:16 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 11:14:24 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 10:07:17 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		is_pipe(char *str)
 	}
 	if (i < 3)
 		return (0);
-	if (str[0] == '-' || str[i-1] == '-' || count != 1)
+	if (str[0] == '-' || str[i - 1] == '-' || count != 1)
 		return (0);
 	return (1);
 }

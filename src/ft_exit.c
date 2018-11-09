@@ -6,16 +6,15 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:31:30 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:41:36 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 11:54:29 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
-void	ft_exit_error(t_list *input, t_room *room, char **str)
+void	ft_exit_error(t_list *input, t_room *room)
 {
-	free_all(input, room, str);
+	free_all(input, room);
 	exit(1);
 }
 
@@ -25,7 +24,7 @@ void	ft_exit_malloc(void)
 	exit(1);
 }
 
-void	free_all(t_list *input, t_room *room, char **str)
+void	free_all(t_list *input, t_room *room)
 {
 	t_room	*tmp;
 	t_list	*lst_tmp;
@@ -46,7 +45,29 @@ void	free_all(t_list *input, t_room *room, char **str)
 		ft_memdel((void**)&(tmp->name));
 		ft_memdel((void**)&tmp);
 	}
-	ft_memdel((void**)str);
+}
+
+void	free_loop(t_list *input, t_room *room, t_list *path_list)
+{
+	t_list *path_list_tmp;
+	t_list *path;
+	t_list *path_tmp;
+
+	path_list_tmp = path_list;
+	while (path_list)
+	{
+		path = path_list;
+		while (path)
+		{
+			path_tmp = path;
+			path = path->next;
+			ft_memdel((void**)path_tmp);
+		}
+		path_list_tmp = path_list;
+		path_list = path_list->next;
+		ft_memdel((void**)path_list_tmp);
+	}
+	free_all(input, room);
 }
 
 void	free_split(char **split)

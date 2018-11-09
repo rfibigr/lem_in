@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 14:34:03 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 10:02:17 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ void	create_ant_list(t_ant **ant_list, int nb_ant)
 
 	while (nb_ant)
 	{
-		if(!(ant = (t_ant*)malloc(sizeof(t_ant))))
+		if (!(ant = (t_ant*)malloc(sizeof(t_ant))))
 			ft_exit_malloc();
 		ant->name = nb_ant;
 		ant->path = NULL;
 		ant->next = NULL;
 		ant->previous = NULL;
-
 		if (*ant_list == NULL)
 			*ant_list = ant;
 		else
@@ -59,7 +58,7 @@ void	create_ant_list(t_ant **ant_list, int nb_ant)
 void	ft_add_size_to_path(t_list **list_of_path)
 {
 	t_list	*path;
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *list_of_path;
 	path = NULL;

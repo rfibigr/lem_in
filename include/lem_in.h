@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 19:34:54 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 12:06:37 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct		s_ant
 typedef struct		s_loop
 {
 	t_mlx			mlx;
+	t_list			*input;
 	t_list			*path;
 	t_room			*room;
 	t_anthill		anthill;
@@ -190,6 +191,8 @@ void				init_anthill(t_anthill *anthill);
 void				init_room(t_room **elem);
 t_mlx				init_windows(void);
 t_loop				init_loop(void);
+void				init_variable(t_list **list_of_path, t_room **list_room,
+					t_list **lst_input, char **str)
 /*
 ** --------------------------------------------
 ** -----------TEST VALID ANTHILL  -------------
@@ -272,17 +275,19 @@ void				print_ant(t_ant *ant);
 ** ------------------- EXIT -------------------
 ** --------------------------------------------
 */
-void				ft_exit_error(t_list *input, t_room *room, char **str);
+void				ft_exit_error(t_list *input, t_room *room);
 void				ft_exit_malloc(void);
-void				free_all(t_list *input, t_room *room, char **str);
+void				free_all(t_list *input, t_room *room);
 void				free_split(char **split);
+void				free_loop(t_list *input, t_room *room, t_list *path_list);
+
 
 /*
 ** --------------------------------------------
 ** -------------- VISUALIZER ------------------
 ** --------------------------------------------
 */
-void	visualizer(char **str, t_room *room, t_list *path, t_anthill anthill);
+void	visualizer(char **str, t_room *room, t_list *path_l, t_anthill anthill);
 int		key_hook(int key, t_loop *loop);
 /*
 ** -SCALE
@@ -297,6 +302,8 @@ void	draw_image(t_mlx *mlx);
 
 void	fill_pixel(char **img_str, int x, int y, unsigned long color);
 
+void	ft_trace_path_color(t_room *room1, t_room *room2, t_mlx mlx, int *i);
+
 /*
 ** -bresenham
 */
@@ -309,7 +316,8 @@ void	trace_room(t_room *room, t_mlx mlx);
 /*
 ** -visu ant
 */
-void	print_pixel_ant(t_ant *ant_list, t_room *room, t_mlx mlx, t_list *path_list, t_anthill anthill);
+// void	print_pixel_ant(t_ant *ant_list, t_room *room, t_mlx mlx, t_list *path_list, t_anthill anthill);
+void	print_pixel_ant(t_loop *loop);
 int		visualizer_ant(t_loop *loop);
 int		stop_prog(t_loop *loop);
 

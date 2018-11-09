@@ -6,11 +6,20 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 18:30:26 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 18:43:44 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 12:09:47 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+void	init_variable(t_list **list_of_path, t_room **list_room,
+	t_list **lst_input, char **str)
+{
+	*list_of_path = NULL;
+	*list_room = NULL;
+	*str = NULL;
+	*lst_input = NULL;
+}
 
 void	init_anthill(t_anthill *anthill)
 {
@@ -33,7 +42,7 @@ void	init_room(t_room **elem)
 	(*elem)->parent = NULL;
 	(*elem)->next = NULL;
 	if (!((*elem)->connection = (t_room**)malloc(sizeof(t_room *) * 2)))
-			ft_exit_malloc();;
+		ft_exit_malloc();
 	(*elem)->connection[0] = NULL;
 }
 

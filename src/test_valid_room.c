@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/02 17:26:46 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:43:18 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 10:08:01 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		is_room(char *str)
 	}
 	if (i < 5)
 		return (0);
-	if (str[0] == ' ' || str[i-1] == ' ' || count != 2)
+	if (str[0] == ' ' || str[i - 1] == ' ' || count != 2)
 		return (0);
 	return (1);
 }

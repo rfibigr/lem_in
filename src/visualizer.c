@@ -6,23 +6,21 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 14:57:32 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/08 22:14:59 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 12:11:47 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	visualizer(char **str, t_room *room, t_list *path_list, t_anthill anthill)
+void	visualizer(char **str, t_room *room, t_list *path_l, t_anthill anthill)
 {
 	t_mlx	mlx;
 	t_loop	loop;
 	t_scale	scale;
 
 	str = str + 1;
-	if (ft_strcmp(*str, "-visualizer"))
-		return;
 	loop = init_loop();
-	loop.path = path_list;
+	loop.path = path_l;
 	loop.room = room;
 	loop.anthill = anthill;
 	create_ant_list(&loop.ant_list, anthill.nb_ant);
@@ -43,35 +41,36 @@ int		visualizer_ant(t_loop *loop)
 	move_ant(&loop->ant_list);
 	if (loop->ant_start > 0)
 		start_ant(&loop->ant_list, loop->path, &loop->ant_start);
-	print_pixel_ant(loop->ant_list, loop->room, loop->mlx, loop->path, loop->anthill);
+	print_pixel_ant(loop);
 	delete_ant_arrived(&loop->ant_list, loop->anthill.end->name);
 	usleep(3000000);
 	return (0);
 }
 
-void	print_pixel_ant(t_ant *ant_list, t_room *room, t_mlx mlx, t_list *path_list, t_anthill anthill)
+void	print_pixel_ant(t_loop *loop)
 {
-	t_list	*path;
 	char	*str;
+	t_ant	*ant_list;
+	t_room	*room;
 
-	path = NULL;
-	mlx_clear_window(mlx.init, mlx.name);
-	trace_room(room, mlx);
-	trace_path(path_list, mlx, anthill.start);
+	ant_list = loop->ant_list;
+	room = loop->room;
+	mlx_clear_window(loop->mlx.init, loop->mlx.name);
+	trace_room(loop->room, loop->mlx);
+	trace_path(loop->path, loop->mlx, loop->anthill.start);
 	while (ant_list->path && ant_list)
 	{
-		usleep(50000);
-		path = ant_list->path;
-		room = path->content;
-		if (strcmp(room->name, anthill.end->name))
+		room = ant_list->path->content;
+		if (strcmp(room->name, loop->anthill.end->name))
 		{
 			str = ft_itoa(ant_list->name);
-			mlx_string_put(mlx.init, mlx.name, room->x_coord, room->y_coord, 0, str);
+			mlx_string_put(loop->mlx.init, loop->mlx.name,
+				room->x_coord, room->y_coord, 0, str);
 			free(str);
 		}
 		ant_list = ant_list->next;
 		if (ant_list == NULL)
-			break;
+			break ;
 	}
 }
 
@@ -92,7 +91,7 @@ int		key_hook(int key, t_loop *loop)
 	}
 	if (key == 53)
 	{
-		//free all
+		free_loop(loop->input, loop->room, loop->path);
 		exit(0);
 	}
 	return (0);
