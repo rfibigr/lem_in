@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:39:28 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/09 16:13:10 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 17:17:22 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int		main(int argc, char **argv)
 	char		*str;
 	t_list		*list_of_path;
 
-	if (argc > 2 || (argc == 2 && ft_strcmp(argv[1], "-visualizer")))
-		return (0);
+	ft_test_argument(argc, argv);
 	init_variable(&list_of_path, &list_room, &lst_input, &str);
 	init_anthill(&anthill);
 	while (get_next_line(0, &str))
@@ -39,8 +38,11 @@ int		main(int argc, char **argv)
 	if (argc == 2 && ft_strcmp(argv[1], "-visualizer") == 0)
 		visualizer(argv, list_room, list_of_path, anthill);
 	free_loop(lst_input, list_room, list_of_path);
-
-
-	while (1);
 	return (0);
+}
+
+void	ft_test_argument(int argc, char **argv)
+{
+	if (argc > 2 || (argc == 2 && ft_strcmp(argv[1], "-visualizer")))
+		exit(1);
 }
