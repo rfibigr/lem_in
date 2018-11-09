@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/09 10:03:14 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 14:56:26 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ void	ft_delete_ant(t_ant **ant, t_ant **ant_list)
 		(*ant_list) = (*ant_list)->next;
 		if (*ant_list)
 			(*ant_list)->previous = NULL;
+	}
+	else if ((*ant)->next == NULL)
+	{
+		(*ant)->previous->next = (*ant)->next;
 	}
 	else
 	{

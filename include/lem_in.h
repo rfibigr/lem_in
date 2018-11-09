@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 10:49:04 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/09 12:06:37 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 14:05:07 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void				init_room(t_room **elem);
 t_mlx				init_windows(void);
 t_loop				init_loop(void);
 void				init_variable(t_list **list_of_path, t_room **list_room,
-					t_list **lst_input, char **str)
+					t_list **lst_input, char **str);
 /*
 ** --------------------------------------------
 ** -----------TEST VALID ANTHILL  -------------

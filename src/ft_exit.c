@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:31:30 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/09 11:54:29 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 16:24:12 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_all(t_list *input, t_room *room)
 	while (input)
 	{
 		lst_tmp = input;
-		input = input->next;
+		input = (input)->next;
 		ft_memdel((void**)&(lst_tmp->content));
 		ft_memdel((void**)&lst_tmp);
 	}
@@ -56,16 +56,16 @@ void	free_loop(t_list *input, t_room *room, t_list *path_list)
 	path_list_tmp = path_list;
 	while (path_list)
 	{
-		path = path_list;
+		path = path_list->content;
 		while (path)
 		{
 			path_tmp = path;
 			path = path->next;
-			ft_memdel((void**)path_tmp);
+			ft_memdel((void**)&path_tmp);
 		}
 		path_list_tmp = path_list;
 		path_list = path_list->next;
-		ft_memdel((void**)path_list_tmp);
+		ft_memdel((void**)&path_list_tmp);
 	}
 	free_all(input, room);
 }

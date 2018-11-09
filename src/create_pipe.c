@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/26 10:02:05 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/06 15:46:14 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 16:24:05 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int		ft_create_pipe(t_anthill *anthill, t_room **room, char *str)
 	if (pipe_valid_format(room, split))
 	{
 		if (!(add_pipe_lst(room, split)))
+		{
+			free_split(split);
 			return (0);
+		}
 	}
 	else
 	{

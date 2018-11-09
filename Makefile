@@ -6,7 +6,7 @@
 #    By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/01 16:20:20 by rfibigr           #+#    #+#              #
-#    Updated: 2018/11/08 16:14:39 by rfibigr          ###   ########.fr        #
+#    Updated: 2018/11/09 14:21:22 by rfibigr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re
@@ -53,7 +53,6 @@ SRC =		lem_in.c \
 			test_valid_anthill.c \
 			test_valid_pipe.c \
 			test_valid_room.c \
-			tool.c \
 			visualizer.c \
 			visualizer_scale.c \
 			visualizer_trace.c \

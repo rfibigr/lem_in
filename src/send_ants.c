@@ -6,7 +6,7 @@
 /*   By: rfibigr <rfibigr@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 17:21:29 by rfibigr           #+#    #+#             */
-/*   Updated: 2018/11/09 10:02:17 by rfibigr          ###   ########.fr       */
+/*   Updated: 2018/11/09 16:24:08 by rfibigr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_send_ant(t_list **path_list, int nb_ant, char *end_name)
 		print_ant_list(ant_list);
 		delete_ant_arrived(&ant_list, end_name);
 	}
+	ft_memdel((void**)&ant_list);
 }
 
 void	create_ant_list(t_ant **ant_list, int nb_ant)
