@@ -114,7 +114,7 @@ To realise this project I implement a breath search algorithm that i customise t
 
 I also had in a bonus a visualizer that i write the [minilibx library](https://github.com/rfibigr/push_swap/tree/master/lib/minilibx_macos) (a custom graphic library).
 
-##How to install
+## How to install
 
 ```bash
 git clone https://github.com/rfibigr/lem_in.git --recurse
@@ -132,7 +132,7 @@ git submodule update
 make
 ```
 
-##How to run
+## How to run
 
 Lem_in read on the standard entry and wait for the input of a maps
 Some maps are at disposition in the folder maps.
@@ -150,6 +150,8 @@ exemple to test
 ```bash
 ./lem-in -visualizer < map/test3
 ```
+The `space key` start the visualizer
+The `echap key` to close the windows
 
 
 ## Author
