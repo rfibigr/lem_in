@@ -114,7 +114,7 @@ To realise this project I implement a breath search algorithm that i customise t
 
 I also had in a bonus a visualizer that i write the [minilibx library](https://github.com/rfibigr/push_swap/tree/master/lib/minilibx_macos) (a custom graphic library).
 
-![Alt Text](https://github.com/rfibigr/lem_in/divers/lem_in.gif)
+![Alt Text](https://github.com/rfibigr/lem_in/blob/master/divers/lem_in_visu.gif)
 
 
 
