@@ -4,8 +4,12 @@ The goal of this project is to find the quickest way to get n ants across the fa
 They will also need to avoid traffic jams as well as walking all over their fellow ants.
 At the beginning of the game, all the ants are in the room ##start. The goal is to bring them to the room ##end with as few turns as possible.
 
-to know more about the project, you can read the instruction in the [lem_in.pdf](https://github.com/rfibigr/lem_in/divers/lem_in.fr.pdf)
+to know more about the project, you can read the instruction in the [french : lem_in.fr.pdf](https://github.com/rfibigr/lem_in/divers/lem_in.fr.pdf) or [english : lem_in.en.pdf ](https://github.com/rfibigr/lem_in/divers/lem_in.en.pdf)
 
+This readme include information from the pdf file.
+
+Visualization of my project
+![Alt Text](https://github.com/rfibigr/lem_in/blob/master/divers/lem_in_visu.gif)
 
 ## The ant farm
 
@@ -93,6 +97,13 @@ L2-1 L3-3
 L3-1
 ```
 
+## My implementation
+
+To realise this project I implement a breath search algorithm that i customise to be able to find multi unique path.
+
+The visualizer is a bonus feature I realise.
+
+
 ## library used
 
 allowed funtions :
@@ -104,21 +115,13 @@ allowed funtions :
 + perror
 + exit
 
-I use the library [libft](https://github.com/rfibigr/libft)
+I use a custom library I create [libft](https://github.com/rfibigr/libft)
 and the [minilibx library](https://github.com/rfibigr/push_swap/tree/master/lib/minilibx_macos) (a custom graphic library) to create the visualizer.
 
 
-## My implementation
+## How to install and run
 
-To realise this project I implement a breath search algorithm that i customise to be able to find multi unique path.
-
-I also had in a bonus a visualizer that i write the [minilibx library](https://github.com/rfibigr/push_swap/tree/master/lib/minilibx_macos) (a custom graphic library).
-
-![Alt Text](https://github.com/rfibigr/lem_in/blob/master/divers/lem_in_visu.gif)
-
-
-
-## How to install
+To install download the repo and compile the source.
 
 ```bash
 git clone https://github.com/rfibigr/lem_in.git --recurse
@@ -136,28 +139,27 @@ git submodule update
 make
 ```
 
-## How to run
-
-Lem_in read on the standard entry and wait for the input of a maps
+Lem_in read on the standard input and wait for the input of a maps
 Some maps are at disposition in the folder maps.
+
+Usage : ./lem-in [-v] <list of numbers>
+-v 	: visualizer
+list of numbers : list of numbers without duplicate seperated by a space
 
 ```bash
 ./lem-in < [map]
 ```
 
-to use the visualizer add the option -visualizer
-
-```bash
-./lem-in -visualizer < [map]
-```
-exemple to test
+Exemple to test
 ```bash
 ./lem-in -visualizer < map/test3
 ```
-The `space key` start the visualizer.
-The `echap key` to close the windows
+
+Visualizer command :
++ 'Escap' to quit
++ 'space' to start pause
 
 
-## Author
+## Licence and contact
 
-Romain Fibigr : rfibigr@student.42.fr
+Feel free to use or contact me for more information.
